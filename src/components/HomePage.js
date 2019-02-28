@@ -5,6 +5,7 @@ import FavoriteFriends from "./FavoriteFriends";
 import FavoriteChannels from "./FavoriteChannels";
 import Search from "./Search";
 import { Link } from "react-router-dom";
+import SignupForm from "./SignupForm";
 
 class HomePage extends Component {
   state = {};
@@ -15,7 +16,7 @@ class HomePage extends Component {
           <h1>Link'All</h1>
           <h2>Welcome to Link'All ! Your favorite Chat counrtry.</h2>
 
-          <Link to="/signup-page">
+          <Link to={SignupForm}>
             <button>Sign Up</button>
           </Link>
         </section>

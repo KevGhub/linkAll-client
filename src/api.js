@@ -30,10 +30,10 @@ function errorHandler(err) {
     throw err;
 }
 
-export function getPhoneList() {
-    // use these fucntion inside the component correspondant
-    return backendApi.get("/api/phones").catch(errorHandler)
-}
+// export function getPhoneList() {
+//     // use these fucntion inside the component correspondant
+//     return backendApi.get("/api/phones").catch(errorHandler)
+// }
 
 // export function getPhoneDetails(phoneId) {
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Switch, Route, NavLink } from "react-router-dom";
+import { MDCSlider } from '@material/slider';
 import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
 
@@ -11,6 +12,9 @@ class App extends Component {
     super(props);
     this.state = {};
   }
+
+
+
   render() {
     return (
       <div>
@@ -37,7 +41,7 @@ class App extends Component {
             )}
           </nav>
         </header>
-
+              
         <Switch>
           {/* Home Page route should always have EXACT on it */}
           <Route exact path="/" component={HomePage} />
@@ -46,6 +50,7 @@ class App extends Component {
           <Route component={NotFound} />
         </Switch>
       </div>
+        
     );
   }
 }
