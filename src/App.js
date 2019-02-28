@@ -11,19 +11,14 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <nav>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        </nav>
-
-        <Switch>
-          {/* Home Page route should always have EXACT on it */}
-          <AppMessenger />;{/*  404 route should go LAST */}
-          {/* <Route component={NotFound} /> */}
-        </Switch>
-      </div>
+      <section className="HomePage">
+        <header>
+          <nav>
+            <img src="#" alt="logo" />
+            <button> Log in </button>
+          </nav>
+        </header>
+      </section>
     );
   }
 }

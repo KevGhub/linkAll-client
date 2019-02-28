@@ -1,22 +1,27 @@
 import React, { Component } from "react";
 
 import "./HomePage.css";
+import FavoriteFriends from "./FavoriteFriends";
+import FavoriteChannels from "./FavoriteChannels";
+import Search from "./components/Search";
 
 class HomePage extends Component {
   state = {};
   render() {
     return (
-      <section className="HomePage">
-        <header>
-          <nav>
-            <img src="#" alt="logo" />
-            <button>Log in </button>
-          </nav>
-        </header>
+      <div>
+        <section>
+          <h1>Link'All</h1>
+          <h2>Welcome to Link'All ! Your favorite Chat counrtry.</h2>
+          <button>Sign Up</button>
+        </section>
 
-        <h1>Link'All</h1>
-        <p>Welcome to Link'All ! Your favorite Chat counrtry.</p>
-      </section>
+        <section>
+          <Search />
+          <FavoriteChannels />
+          <FavoriteFriends />
+        </section>
+      </div>
     );
   }
 }
