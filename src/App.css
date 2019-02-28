@@ -1,0 +1,14 @@
+.App-logo {
+    width: 15%;
+}
+
+.App {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
