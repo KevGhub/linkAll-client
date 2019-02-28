@@ -4,7 +4,7 @@ import "./App.css";
 import { Switch, Route, NavLink } from "react-router-dom";
 import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
-
+import Search from "./components/Search";
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +41,7 @@ class App extends Component {
         <Switch>
           {/* Home Page route should always have EXACT on it */}
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/countries" component={Search} />
 
           {/*  404 route should go LAST */}
           <Route component={NotFound} />
