@@ -5,6 +5,7 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
