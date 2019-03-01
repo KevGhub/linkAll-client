@@ -10,14 +10,38 @@ import Search from "./components/Search";
 class App extends Component {
   constructor(props) {
     super(props);
+    let userInfo = localStorage.getItem("currentUser");
+    if (userInfo) {
+      // turn the string back into an object if he's logged in
+      userInfo = JSON.parse(userInfo);
+    }
     this.state = {
-      currentUser: null
+      currentUser: userInfo
     };
+ 
   }
 
-  updateUser(user) {
-    this.setState({ currentUser: user });
+  updateUser(newUser) {
+    console.log("hello", newUser, localStorage.getItem("currentUser"))
+
+    if (newUser) {
+      //save the user info in localstorage if he's log in
+      //(turn it into JSON string before saving)
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+    } else {
+      // delete the user info fron localStorage if he's log out
+      localStorage.removeItem("currentUser");
+    }
+
+    this.setState({ currentUser: newUser });
   }
+
+  // LogoutClick() {
+  //   getLogOut().then(response => {
+  //     console.log("Log Out", response.data);
+  //     this.updateUser(null);
+  //   })
+  //};
 
   render() {
     return (
@@ -47,11 +71,11 @@ class App extends Component {
         </header>
               
         <Switch>
-          {/* Home Page route should always have EXACT on it */}
 
           {/* <Route exact path="/" component={HomePage}/> */}
           <Route exact path="/" render={() => {
-            return <HomePage currentUser={this.state.currentUser} signupSuccess={user => this.updateUser(user)}/>
+            return <HomePage currentUser={this.state.currentUser} signupSuccess={user => this.updateUser(user)} loginSuccess={user => this.updateUser(user)} />
+          }}/>
           }}/>
           <Route exact path="/countries" component={Search} />
           
