@@ -28,8 +28,7 @@ class Search extends Component {
     // CONNECTION FRONT & BACK is HERE :
     // get datat from our Express API (localhost:5555) (now in api.js)
     getCountries().then(response => {
-      //ALWAYS console.log () response.data to see what the API give you
-      console.log("our COUNTRIES :", response.data);
+      // console.log("our COUNTRIES :", response.data);
       // SAVE the JSON data from the API into the state
       this.setState({ countryArray: response.data });
     });

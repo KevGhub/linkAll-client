@@ -38,7 +38,7 @@ class LoginForm extends Component {
         <h2>You are at few steps from joining the LinkAll community</h2>
 
         <form onSubmit={event => this.handleSubmit(event)}>
-          <img src={currentUser.profileImg} />
+          <img src={this.state.profileImg} />
 
           <label>
             Email:
