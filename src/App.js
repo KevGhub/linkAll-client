@@ -10,10 +10,14 @@ import Search from "./components/Search";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentUser: null
+    };
   }
 
-
+  updateUser(user) {
+    this.setState({ currentUser: user });
+  }
 
   render() {
     return (
@@ -33,19 +37,24 @@ class App extends Component {
                 </div>
               </span>
             ) : (
-              <span>
-                <NavLink to="/login-page">
-                  <button>Log In</button>
-                </NavLink>
-              </span>
-            )}
+                <span>
+                  <NavLink to="/login-page">
+                    <button>Log In</button>
+                  </NavLink>
+                </span>
+              )}
           </nav>
         </header>
               
         <Switch>
           {/* Home Page route should always have EXACT on it */}
-          <Route exact path="/" component={HomePage} />
+
+          {/* <Route exact path="/" component={HomePage}/> */}
+          <Route exact path="/" render={() => {
+            return <HomePage currentUser={this.state.currentUser} signupSuccess={user => this.updateUser(user)}/>
+          }}/>
           <Route exact path="/countries" component={Search} />
+          
 
           {/*  404 route should go LAST */}
           <Route component={NotFound} />

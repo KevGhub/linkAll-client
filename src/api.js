@@ -21,12 +21,14 @@ function errorHandler(err) {
     console.log("React Code Error", err);
   }
   // Alert generic message for the user
-  // alert("Sorry ! Some went wrong")
+  alert("Sorry ! Some went wrong")
 
   // cause the error again so the .then() won't be called
   throw err;
 }
 
+// DATA ###################################################################
+//-------------------------------------------------------------------------
 export function getCountries() {
   // use these fucntion inside the component correspondant
   return backendApi.get("/api/countries").catch(errorHandler);
@@ -43,7 +45,7 @@ export function getCountries() {
 // }
 
 // AUTH ###################################################################
-//----------------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 export function postSignUp(userSubmission) {
   return backendApi
     .post("/api/process-signup", userSubmission)

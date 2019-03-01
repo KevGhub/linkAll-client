@@ -57,8 +57,8 @@ class Search extends Component {
             return (
               <li key={oneCounrty._id}>
                 <h3>{oneCounrty.name}</h3>
-                <p>{oneCounrty.capital}</p>
                 <img src={oneCounrty.flag} />
+                <p>{oneCounrty.capital}</p>
               </li>
             );
           })}
