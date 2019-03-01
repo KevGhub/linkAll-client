@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+// import {MDCSlider} from '@material/slider';
 import "./SignupForm.css";
 import { postSignUp } from "../api.js";
 
@@ -21,6 +21,10 @@ class SignupForm extends Component {
             gender: "",
             description: ""
         };
+
+        // this.slider = null;
+
+        // this.sliderDOM = React.createRef();
     }
 
     genericOnChange(event) {
@@ -37,60 +41,143 @@ class SignupForm extends Component {
         });
     }
 
+    // componentDidMount() {
+    //     this.slider = new MDCSlider(this.sliderDOM.current);
+    // }
+
+    // testClick() {
+    //     this.slider.stepUp(1);
+    // }
+
     render() {
         // currentUser is now sent by App.js as a prop
-        const { currentUser } = this.props;
+        // const { currentUser } = this.props;
         return (
             <section className="SignupForm">
-                {currentUser ? (
-                    <div>
-                        <h2>Successfully Signed Up !</h2>
-                        <p>Welcome, {currentUser.pseudo} !</p>
+                
+                <div>
+                    <h2>Sign Up</h2>
 
-                        <p>Hey Welcome here how to use our Chat 
-                        </p>
-                    </div>
-                )
-                    :
-
-                    (<div>
-                        <h2>Sign Up</h2>
-
-                        <form onSubmit={event => this.handleSubmit(event)}>
-                            <label>
-                                Full Name:
+                    <form onSubmit={event => this.handleSubmit(event)}>
+                        <label>
+                            Full Name:
                             <input
-                                    onChange={event => this.genericOnChange(event)}
-                                    value={this.state.fullName}
-                                    name="fullName"
-                                    type="text"
-                                    placeholder="Your name" />
-                            </label>
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.fullName}
+                                name="fullName"
+                                type="text"
+                                placeholder="Your name" />
+                        </label>
 
-                            <label>
-                                Email:
+                        <label>
+                            Email:
                             <input
-                                    onChange={event => this.genericOnChange(event)}
-                                    value={this.state.email}
-                                    name="email"
-                                    type="email"
-                                    placeholder="Your email address" />
-                            </label>
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.email}
+                                name="email"
+                                type="email"
+                                placeholder="Your email address" />
+                        </label>
 
-                            <label>
-                                Password:
+                        <label>
+                            Password:
                             <input
-                                    onChange={event => this.genericOnChange(event)}
-                                    value={this.state.originalPassword}
-                                    name="originalPassword"
-                                    type="password"
-                                    placeholder="Your password" />
-                            </label>
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.originalPassword}
+                                name="originalPassword"
+                                type="password"
+                                placeholder="Your password" />
+                        </label>
 
-                            <button>Sign Up</button>
-                        </form>
-                    </div>)}
+                        <label>
+                            Pseudo:
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.pseudo}
+                                name="pseudo"
+                                type="text"
+                                placeholder="Your pseudo" />
+                        </label>
 
+                        <label>
+                            Age:
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.age}
+                                name="age"
+                                type="number"
+                                placeholder="Your age (must be at least 18)" />
+                        </label>
+
+                        <label>
+                            Location:
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.location}
+                                name="location"
+                                type="text"
+                                placeholder="Your city and country (ex: Paris, FRANCE)" />
+                        </label>
+
+                        <label>
+                            Picture:
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.profileImg}
+                                name="profileImg"
+                                type="file" />
+                        </label>
+
+                        <div>
+                            <p>Gender</p>
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                checked={this.state.gender === "female"}
+                                value="female"
+                                name="gender"
+                                type="radio"
+                                placeholder="Your name"
+                                id="gender-female"
+                            />
+                            <label for="gender-female">Female:</label>
+
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                checked={this.state.gender === "male"}
+                                value="male"
+                                name="gender"
+                                type="radio"
+                                placeholder="Your name"
+                                id="gender-male"
+                            />
+                            <label for="gender-male">Male:</label>
+
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                checked={this.state.gender === "neutral"}
+                                value="neutral"
+                                name="gender"
+                                type="radio"
+                                placeholder="Your name"
+                                id="gender-neutral"
+                            />
+                            <label for="gender-neutral">Neutral:</label>
+                        </div>
+
+
+                        <label>
+                            Description:
+                            <input
+                                onChange={event => this.genericOnChange(event)}
+                                value={this.state.description}
+                                name="description"
+                                type="text"
+                                placeholder="#geek #photography #tennis #TeamDog" />
+                        </label>
+
+                        <button>Sign Up</button>
+                    </form>
+                </div>
 
             </section>
         );
