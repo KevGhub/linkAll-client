@@ -139,7 +139,7 @@ class SignupForm extends Component {
                                 placeholder="Your name"
                                 id="gender-female"
                             />
-                            <label for="gender-female">Female:</label>
+                            <label htmlFor="gender-female">Female:</label>
 
                             <input
                                 onChange={event => this.genericOnChange(event)}
@@ -150,7 +150,7 @@ class SignupForm extends Component {
                                 placeholder="Your name"
                                 id="gender-male"
                             />
-                            <label for="gender-male">Male:</label>
+                            <label htmlFor="gender-male">Male:</label>
 
                             <input
                                 onChange={event => this.genericOnChange(event)}
@@ -161,7 +161,7 @@ class SignupForm extends Component {
                                 placeholder="Your name"
                                 id="gender-neutral"
                             />
-                            <label for="gender-neutral">Neutral:</label>
+                            <label htmlFor="gender-neutral">Neutral:</label>
                         </div>
 
 
