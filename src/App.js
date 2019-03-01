@@ -6,6 +6,7 @@ import { MDCSlider } from '@material/slider';
 import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
 import Search from "./components/Search";
+import { getLogOut } from './api'
 
 class App extends Component {
   constructor(props) {
@@ -36,37 +37,43 @@ class App extends Component {
     this.setState({ currentUser: newUser });
   }
 
-  // LogoutClick() {
-  //   getLogOut().then(response => {
-  //     console.log("Log Out", response.data);
-  //     this.updateUser(null);
-  //   })
-  //};
+  LogoutClick() {
+    getLogOut().then(response => {
+      console.log("Log Out", response.data);
+      this.updateUser(null);
+    })
+  }
 
   render() {
     return (
-      <div>
+      <div className="App">
         <header className="header">
           <nav>
             <NavLink exact to="/">
               <img className="App-logo" src={logo} alt="logo" />
             </NavLink>
 
+
             {this.state.currentUser ? (
               <span>
-                <div className="User-connected">
-                  <p>User Pseudo</p>
-                  <img src="./logo.svg" alt="User-Img" />
-                  {/* component mp-notif */}
+               <div className="User-connected">
+                <p>Welcome {this.state.currentUser.pseudo}</p>
+                <img src={this.state.currentUser.profileImg} alt="User-Img" />
+                {/* component mp-notif */}
+                </div>
+                <div className="User-out">
+                  <b>{this.state.currentUser.email}</b>
+                  <button onClick={() => this.LogoutClick()}>Log Out</button>
                 </div>
               </span>
             ) : (
                 <span>
-                  <NavLink to="/login-page">
+                  <NavLink to="/">
                     <button>Log In</button>
                   </NavLink>
                 </span>
               )}
+            
           </nav>
         </header>
               
@@ -74,19 +81,21 @@ class App extends Component {
 
           {/* <Route exact path="/" component={HomePage}/> */}
           <Route exact path="/" render={() => {
-            return <HomePage currentUser={this.state.currentUser} signupSuccess={user => this.updateUser(user)} loginSuccess={user => this.updateUser(user)} />
-          }}/>
-          }}/>
-          <Route exact path="/countries" component={Search} />
-          
-
+            return <HomePage
+              currentUser={this.state.currentUser}
+              signupSuccess={user => this.updateUser(user)}
+              loginSuccess={user => this.updateUser(user)} />
+          }} />
+          <Route path="/countries" component={Search} />
+         
           {/*  404 route should go LAST */}
           <Route component={NotFound} />
+
         </Switch>
       </div>
-        
     );
-  }
+  }            
 }
+
 
 export default App;
