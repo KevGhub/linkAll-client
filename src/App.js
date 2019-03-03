@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Switch, Route, NavLink } from "react-router-dom";
-import { MDCSlider } from '@material/slider';
 import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
 import Search from "./components/Search";
 import { getLogOut } from './api'
+import UserAccount from "./components/UserAccount";
+
+function getUserddress(user) {
+  return `/account/${user.pseudo}`;
+}
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +48,8 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className="App">
@@ -56,13 +62,17 @@ class App extends Component {
 
             {this.state.currentUser ? (
               <span>
-               <div className="User-connected">
-                <p>Welcome {this.state.currentUser.pseudo}</p>
-                <img src={this.state.currentUser.profileImg} alt="User-Img" />
+                <div className="User-connected">
+                  <NavLink to={getUserddress(this.state.currentUser)}>
+                    {this.state.currentUser.pseudo}
+                  </NavLink>
+                  <NavLink to={getUserddress(this.state.currentUser)}>
+                    <img src={this.state.currentUser.profileImg} alt="User-Img" />
+                  </NavLink>
+                
                 {/* component mp-notif */}
                 </div>
                 <div className="User-out">
-                  <b>{this.state.currentUser.email}</b>
                   <button onClick={() => this.LogoutClick()}>Log Out</button>
                 </div>
               </span>
@@ -87,6 +97,7 @@ class App extends Component {
               loginSuccess={user => this.updateUser(user)} />
           }} />
           <Route path="/countries" component={Search} />
+          <Route path="/account/:userPseudo" component={UserAccount}/>
          
           {/*  404 route should go LAST */}
           <Route component={NotFound} />

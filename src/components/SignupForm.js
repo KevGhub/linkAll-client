@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import {MDCSlider} from '@material/slider';
 import "./SignupForm.css";
 import { postSignUp } from "../api.js";
 
@@ -19,9 +18,6 @@ class SignupForm extends Component {
       description: ""
     };
 
-    // this.slider = null;
-
-    // this.sliderDOM = React.createRef();
   }
 
   genericOnChange(event) {
@@ -38,17 +34,9 @@ class SignupForm extends Component {
     });
   }
 
-  // componentDidMount() {
-  //     this.slider = new MDCSlider(this.sliderDOM.current);
-  // }
-
-  // testClick() {
-  //     this.slider.stepUp(1);
-  // }
 
   render() {
-    // currentUser is now sent by App.js as a prop
-    // const { currentUser } = this.props;
+
     return (
       <section className="SignupForm">
         <div>

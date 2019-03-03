@@ -12,7 +12,7 @@ class HomePage extends Component {
   state = {};
   render() {
     return (
-      <div>
+      <div className="HomePage">
         <section>
           <h1>Link'All</h1>
           <h2>Welcome to Link'All ! Your favorite Chat counrtry.</h2>

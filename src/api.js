@@ -3,12 +3,9 @@ import axios from "axios";
 // Create an Axios object with pre-configurate setting
 const backendApi = axios.create({
   baseURL: "http://localhost:5000",
-  //send cookies to the backend on every request (for logging users)
   withCredentials: true
 });
 
-// so instead of axios.post("http://localhost:5000/api/phones", this.state),
-//use baseURL.post("/api/phones", this.state)
 
 // ERROR HANDLER ###################################################################
 //----------------------------------------------------------------------------------
@@ -30,19 +27,15 @@ function errorHandler(err) {
 // DATA ###################################################################
 //-------------------------------------------------------------------------
 export function getCountries() {
-  // use these fucntion inside the component correspondant
   return backendApi.get("/api/countries").catch(errorHandler);
 }
 
-// export function getPhoneDetails(phoneId) {
+// USER ###################################################################
+//-------------------------------------------------------------------------
+export function getUserDetails(userPseudo) {
+   return backendApi.get(`/api/account/${userPseudo}`).catch(errorHandler)
+ }
 
-//     return backendApi.get(`/api/phone/${phoneId}`).catch(errorHandler)
-// }
-
-// export function postPhone(phoneSubmission) {
-
-//     return backendApi.post("/api/phones", { phoneSubmission }).catch(errorHandler)
-// }
 
 // AUTH ###################################################################
 //-------------------------------------------------------------------------
