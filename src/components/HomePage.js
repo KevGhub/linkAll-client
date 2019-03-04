@@ -17,8 +17,14 @@ class HomePage extends Component {
           <h1>Link'All</h1>
           <h2>Welcome to Link'All ! Your favorite Chat counrtry.</h2>
 
-          <SignupForm currentUser={this.props.currentUser} signupSuccess={this.props.signupSuccess} />
-          <LoginForm currentUser={this.props.currentUser} loginSuccess={this.props.loginSuccess} />
+          <SignupForm
+            currentUser={this.props.currentUser}
+            signupSuccess={this.props.signupSuccess}
+          />
+          <LoginForm
+            currentUser={this.props.currentUser}
+            loginSuccess={this.props.loginSuccess}
+          />
 
           <section>
             <Search />

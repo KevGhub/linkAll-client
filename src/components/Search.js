@@ -36,6 +36,7 @@ class Search extends Component {
 
   render() {
     const { countryArray, countrySearch } = this.state;
+    console.log(countryArray, countrySearch);
 
     const lowerSearch = countrySearch.toLowerCase();
     const filteredArray = countryArray.filter(oneCountry => {
@@ -54,21 +55,26 @@ class Search extends Component {
             name="countrySearch"
             type="text"
             className="search-bar"
-            placeholder="Search a Country or your friends"
+            placeholder="Search a Country or a friend"
           />
         </form>
-
-        <ul>
-          {filteredArray.map(oneCountry => {
-            return (
-              <li key={oneCountry._id}>
-                <h3>{oneCountry.name}</h3>
-                <p>{oneCountry.capital}</p>
-                <img src={oneCountry.flag} />
-              </li>
-            );
-          })}
-        </ul>
+        {countrySearch === "" ? null : (
+          <ul>
+            {filteredArray.map(oneCountry => {
+              return (
+                <li key={oneCountry._id}>
+                  <h3>{oneCountry.name}</h3>
+                  <p>{oneCountry.capital}</p>
+                  <img src={oneCountry.flag} />
+                  <h4>{oneCountry.RoomsCategories[0]}</h4>
+                  <h4>{oneCountry.RoomsCategories[1]}</h4>
+                  <h4>{oneCountry.RoomsCategories[2]}</h4>
+                  <h4>{oneCountry.RoomsCategories[3]}</h4>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </section>
     );
   }

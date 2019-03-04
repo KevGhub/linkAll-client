@@ -3,7 +3,8 @@ import Chatkit from "@pusher/chatkit";
 import MessageList from "./components/MessageList";
 import SendMessageForm from "./components/SendMessageForm";
 import RoomList from "./components/RoomList";
-import NewRoomForm from "./components/NewRoomForm";
+import NewRoomForm from "./components/NewRoomForm.js";
+import SearchUser from "./components/SearchUser.js";
 
 import { tokenUrl, instanceLocator } from "./config";
 class AppMessenger extends React.Component {
@@ -98,6 +99,7 @@ class AppMessenger extends React.Component {
   render() {
     return (
       <div className="AppMessenger">
+        <SearchUser user={this.props.user} />
         <RoomList
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
