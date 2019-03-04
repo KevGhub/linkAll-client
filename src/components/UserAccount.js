@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { Link, Switch, Route } from 'react-router-dom';
+
 import "./UserAccount.css";
 import "../userDefault.svg";
 import { getUserDetails } from "../api";
+import ButtonUserProfile from './ButtonUserProfile';
 
 
 class UserAccount extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { userInfo: {}}
+        this.state = {
+            userInfo: {},
+        }
     }
 
     componentDidMount() {
@@ -16,13 +21,19 @@ class UserAccount extends Component {
         const { params } = this.props.match;
         getUserDetails(params.userPseudo)
             .then(response => {
-                console.log("User", response.data); this.setState({ userInfo: response.data })
+                console.log("User", response.data);
+                this.setState({ userInfo: response.data })
             })
         
     }
 
+    deleteProfile() {
+
+    }
+
     render() {
-        const { userInfo } = this.state;
+        const { userInfo, isEditOpen } = this.state;
+        const { currentUser } = this.props;
         return (
             <div className="UserAccount">
                 
@@ -38,8 +49,26 @@ class UserAccount extends Component {
                             <p>{userInfo.description}</p>
                         </li>
                     </ul>
+
+                    {currentUser.pseudo === userInfo.pseudo ? (
+                        <div>
+                            <Link to={`/account/${userInfo.pseudo}/edit`}>Edit your profile</Link>
+        
+                            <Link to={`/account/${userInfo.pseudo}/delete`}>Delete your profile</Link>
+                        </div>
+                    ) : (
+                        <div>
+                             <button>hello</button>   
+                        </div>
+                    )}
                 </section> {/*end section user-profile */}
-                
+
+                <Switch>
+                    <Route path="/account/:userPseudo/edit" render={() => {
+                        return <ButtonUserProfile userInfo={currentUser} />;
+                    }} />
+                </Switch>
+
                 <section className="Fav-channels">
                     <h2>Favorites Channels</h2>
                     {/* <ul>

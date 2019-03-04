@@ -36,6 +36,11 @@ export function getUserDetails(userPseudo) {
    return backendApi.get(`/api/account/${userPseudo}`).catch(errorHandler)
  }
 
+export function getUserEditDetails(updatedInfo) {
+  return backendApi
+    .post(`/api/account/${updatedInfo.pseudo}/edit-user`, updatedInfo)
+    .catch(errorHandler)
+}
 
 // AUTH ###################################################################
 //-------------------------------------------------------------------------

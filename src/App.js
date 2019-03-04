@@ -65,8 +65,6 @@ class App extends Component {
                 <div className="User-connected">
                   <NavLink to={getUserddress(this.state.currentUser)}>
                     {this.state.currentUser.pseudo}
-                  </NavLink>
-                  <NavLink to={getUserddress(this.state.currentUser)}>
                     <img src={this.state.currentUser.profileImg} alt="User-Img" />
                   </NavLink>
                 
@@ -97,7 +95,11 @@ class App extends Component {
               loginSuccess={user => this.updateUser(user)} />
           }} />
           <Route path="/countries" component={Search} />
-          <Route path="/account/:userPseudo" component={UserAccount}/>
+          <Route path="/account/:userPseudo" render={props => {
+            return <UserAccount
+              currentUser={this.state.currentUser}
+              match={props.match} />;
+          }}/>
          
           {/*  404 route should go LAST */}
           <Route component={NotFound} />
