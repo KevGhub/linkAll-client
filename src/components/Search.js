@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { getCountries } from "../api.js";
 
@@ -65,10 +67,18 @@ class Search extends Component {
                   <h3>{oneCountry.name}</h3>
                   <p>{oneCountry.capital}</p>
                   <img src={oneCountry.flag} />
-                  <h4>{oneCountry.RoomsCategories[0]}</h4>
-                  <h4>{oneCountry.RoomsCategories[1]}</h4>
-                  <h4>{oneCountry.RoomsCategories[2]}</h4>
-                  <h4>{oneCountry.RoomsCategories[3]}</h4>
+
+                  {oneCountry.RoomsCategories.map(oneRoomCategory => {
+                    return (
+                      <Link
+                        to={`/linkall-messenger/${
+                          oneCountry.name
+                        }/${oneRoomCategory}`}
+                      >
+                        <h4>{oneRoomCategory}</h4>
+                      </Link>
+                    );
+                  })}
                 </li>
               );
             })}

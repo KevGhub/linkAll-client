@@ -1,113 +1,100 @@
-import React, { Component } from 'react';
-import { Link, Switch, Route, Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
 
 import "./UserAccount.css";
 import "../userDefault.svg";
 import { getUserDetails } from "../api";
-import { deleteUserProfile } from "../api";
-import ButtonUserProfile from './ButtonUserProfile';
-
+import ButtonUserProfile from "./ButtonUserProfile";
 
 class UserAccount extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: {}
+    };
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            userInfo: {},
-        }
-    }
+  componentDidMount() {
+    const { params } = this.props.match;
+    getUserDetails(params.userName).then(response => {
+      console.log("User", response.data);
+      this.setState({ userInfo: response.data });
+    });
+  }
 
-    componentDidMount() {
+  deleteProfile() {}
 
-        const { params } = this.props.match;
-        
-        getUserDetails(params.userPseudo)
-            .then(response => {
-                console.log("User UPDATE", response.data);
-                this.setState({ userInfo: response.data })
-            })
-        
-    }
+  render() {
+    const { userInfo, isEditOpen } = this.state;
 
-    deleteClick() {
-        console.log(this.props.match.params.userPseudo, "eeeeeee");
-    
-        deleteUserProfile(this.props.match.params.userPseudo).then(response => {
-            console.log("Delete", response.data);
-            this.setState({ isDelete: true });
-            this.props.onUserDelete();
-        });
-    }
+    console.log(userInfo);
+    const { currentUser } = this.props;
+    return (
+      <div className="UserAccount">
+        <section className="User-profile">
+          <ul>
+            <li className="User-visual">
+              <img src={userInfo.avatarURL} alt="User Profile Photo" />
+              <h2>{userInfo.name}</h2>
+            </li>
+            <li className="User-info">
+              <b>{userInfo.location}</b>
+              <p>
+                <i>{userInfo.age}</i>
+              </p>
+              <p>{userInfo.description}</p>
+            </li>
+          </ul>
 
-    deleteSuccess() {
-        const { params } = this.props.match;
-console.log(params);
+          {currentUser.name === userInfo.name ? (
+            <div>
+              <Link to={`/account/${userInfo.name}/edit`}>
+                Edit your profile
+              </Link>
 
-        deleteUserProfile(params.userPseudo)
-            .then(response => {
-                console.log("User DELETED", response.data);
-            })
-    }
-
-
-    render() {
-       
-        const { currentUser } = this.props;
-        
-        console.log("USER INFO: ", currentUser);
-
-        return this.state.isDelete ? (
-          
-             <Redirect exact to="/" />
-        )
-            :
-        (
-            <div className="UserAccount">
-                
-                <section className="User-profile">
-                    <ul>
-                        <li className="User-visual">
-                            <img src={currentUser.profileImg} alt="User Profile " />
-                            <h2>{currentUser.pseudo}</h2>
-                        </li>
-                        <li className="User-info">
-                            <b>{currentUser.location}</b>
-                            <p><i>{currentUser.age}</i></p>
-                            <p>{currentUser.description}</p>
-                        </li>
-                    </ul>
-
-                    <div>
-                        <Link to={`/account/${currentUser.pseudo}/edit`}>Edit your profile</Link>
-        
-                        <Link to={`/account/${currentUser.pseudo}/delete`}>Delete your profile</Link>
-                    </div>
-    
-                </section> {/*end section user-profile */}
-
-                <Switch>
-                    <Route exact path="/account/:userPseudo/edit" render={() => {
-                        return <ButtonUserProfile userInfo={currentUser} />;
-                    }} />
-                    <Route exact path="/account/:userPseudo/delete" render={() => {
-                        return <button onClick={() => this.deleteClick()}>Delete</button>
-                    }} />
-                </Switch>
-
-                <section className="Fav-channels">
-                    <h2>Favorites Channels</h2>
-
-                </section>
-
+              <Link to={`/account/${userInfo.name}/delete`}>
+                Delete your profile
+              </Link>
             </div>
-        );
-    }
+          ) : (
+            <div>
+              <button>hello</button>
+            </div>
+          )}
+        </section>{" "}
+        {/*end section user-profile */}
+        <Switch>
+          <Route
+            path="/account/:userName/edit"
+            render={() => {
+              return <ButtonUserProfile userInfo={currentUser} />;
+            }}
+          />
+        </Switch>
+        <section className="Fav-channels">
+          <h2>Favorites Channels</h2>
+          {/* <ul>
+                        {phoneArray.map(onePhone => {
+                            return (
+                                <li key={onePhone._id}>
+                                    <h3>
+                                        <Link to={getPhoneAddress(onePhone)}>{onePhone.phoneModel}</Link> </h3>
+                                    <p>{onePhone.brand}</p>
+                                    <p>{onePhone.price}</p>
+                                    <img src={onePhone.image} />
+                                </li>
+                            )
+                        })}
 
-
-
-
-
+                    </ul> */}
+        </section>
+        <section>
+          <h2>Friends</h2>
+          {/* insert favorites profiles component */}
+        </section>
+      </div>
+    );
+  }
 }
-
 
 export default UserAccount;

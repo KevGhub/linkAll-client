@@ -5,11 +5,12 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
 import Search from "./components/Search";
-import { getLogOut } from './api'
+import { getLogOut } from "./api";
 import UserAccount from "./components/UserAccount";
+import AppMessenger from "./components/AppMessenger.js";
 
 function getUseraddress(user) {
-  return `/account/${user.pseudo}`;
+  return `/account/${user.name}`;
 }
 
 class App extends Component {
@@ -47,8 +48,6 @@ class App extends Component {
     });
   }
 
-
-
   render() {
     return (
       <div className="App">
@@ -62,11 +61,14 @@ class App extends Component {
               <span>
                 <div className="User-connected">
                   <NavLink to={getUseraddress(this.state.currentUser)}>
-                    {this.state.currentUser.pseudo}
-                    <img src={this.state.currentUser.profileImg} alt="User-Img" />
+                    {this.state.currentUser.name}
+                    <img
+                      src={this.state.currentUser.profileImg}
+                      alt="User-Img"
+                    />
                   </NavLink>
-                
-                {/* component mp-notif */}
+
+                  {/* component mp-notif */}
                 </div>
                 <div className="User-out">
                   <button onClick={() => this.LogoutClick()}>Log Out</button>
@@ -98,13 +100,24 @@ class App extends Component {
             }}
           />
           <Route path="/countries" component={Search} />
-          <Route path="/account/:userPseudo" render={props => {
-            return <UserAccount
-              currentUser={this.state.currentUser}
-              onUserDelete={() => this.updateUser(null)}
-              match={props.match} />;
-          }}/>
-         
+          <Route
+            path="/account/:userName"
+            render={props => {
+              return (
+                <UserAccount
+                  currentUser={this.state.currentUser}
+                  match={props.match}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/linkall-messenger"
+            render={() => {
+              return <AppMessenger currentUser={this.state.currentUser} />;
+            }}
+          />
+
           {/*  404 route should go LAST */}
           <Route component={NotFound} />
         </Switch>

@@ -9,12 +9,13 @@ import LoginForm from "./LoginForm";
 
 class HomePage extends Component {
   state = {};
+
   render() {
     return (
       <div className="HomePage">
         <section>
-          <h1>Link'All</h1>
-          <h2>Welcome to Link'All ! Your favorite Chat counrtry.</h2>
+          <h1>Link'All </h1>
+          <h2>Welcome to Link'All ! Your favorite Chat country.</h2>
 
           <SignupForm
             currentUser={this.props.currentUser}

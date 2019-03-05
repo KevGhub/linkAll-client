@@ -32,16 +32,20 @@ body {
 
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 60px;
   grid-template-areas:
-    "r m m m m m"
-    "r m m m m m"
-    "r m m m m m"
-    "r m m m m m"
-    "r m m m m m"
+    "u r r r r r"
+    "o m m m m m"
+    "o m m m m m"
+    "o m m m m m"
+    "o m m m m m"
     "n s s s s s";
 }
 
 .new-room-form {
   grid-area: n;
+}
+
+.searchResult {
+  grid-area: u;
 }
 
 .rooms-list {
@@ -50,6 +54,9 @@ body {
 
 .message-list {
   grid-area: m;
+}
+.online-user {
+  grid-area: o;
 }
 
 .send-message-form {

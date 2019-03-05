@@ -1,75 +1,83 @@
-import React, { Component } from "react";
+//####################################################
+//####################################################
+//############## TO SEARCH BY USERS ##################
+//####################################################
+//################ UNCOMMENT #########################
+//####################################################
+//####################################################
 
-import { getUsers } from "../api.js";
+// import React, { Component } from "react";
 
-class SearchUser extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      usersArray: [],
-      userSearch: ""
-    };
-  }
+// import { getUserDetails } from "../api";
 
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log("handleSubmit works ?");
-  }
+// class SearchUser extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       userInfo: [],
+//       userSearch: ""
+//     };
+//   }
 
-  genericOnChange(event) {
-    console.log(event.target.value, "TEST generic onchange event");
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
+//   handleSubmit(event) {
+//     event.preventDefault();
+//     console.log("handleSubmit works ?");
+//   }
 
-  componentDidMount() {
-    // CONNECTION FRONT & BACK is HERE :
-    getUsers().then(response => {
-      console.log("our users :", response.data);
+//   genericOnChange(event) {
+//     console.log(event.target.value, "TEST generic onchange event");
+//     const { name, value } = event.target;
+//     this.setState({ [name]: value });
+//   }
 
-      this.setState({ usersArray: response.data });
-    });
-  }
+//   componentDidMount() {
+//     // CONNECTION FRONT & BACK is HERE :
+//     getUserDetails().then(response => {
+//       console.log("our users :", response.data);
 
-  render() {
-    const { usersArray, userSearch } = this.state;
-    console.log(usersArray, userSearch);
+//       this.setState({ userInfo: response.data });
+//     });
+//   }
 
-    const lowerSearch = userSearch.toLowerCase();
-    const filteredArray = usersArray.filter(oneUser => {
-      const lowerName = oneUser.name.toLowerCase();
-      return lowerName.includes(lowerSearch);
-    });
+//   render() {
+//     const { userInfo, userSearch } = this.state;
+//     console.log("blah WORKS????", userInfo, userSearch);
 
-    return (
-      <section className="searchResult">
-        <h2>Search Users</h2>
+//     // const lowerSearch = userSearch.toLowerCase();
+//     // const filteredArray = userInfo.filter(oneUser => {
+//     //   const lowerName = oneUser.name.toLowerCase();
+//     //   return lowerName.includes(lowerSearch);
+//     // });
 
-        <form onSubmit={event => this.handleSubmit(event)}>
-          <input
-            onChange={event => this.genericOnChange(event)}
-            value={this.state.oneUser}
-            name="userSearch"
-            type="text"
-            className="search-bar"
-            placeholder="Search a Country or a friend"
-          />
-        </form>
-        {userSearch === "" ? null : (
-          <ul>
-            {filteredArray.map(oneUser => {
-              return (
-                <li key={oneUser._id}>
-                  <h3>{oneUser.pseudo}</h3>
-                  <img src={oneUser.profileImg} />
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </section>
-    );
-  }
-}
+//     return (
+//       <section className="user-search">
+//         <h2>Search Users</h2>
 
-export default SearchUser;
+//         <form onSubmit={event => this.handleSubmit(event)}>
+//           <input
+//             onChange={event => this.genericOnChange(event)}
+//             value={this.state.oneUser}
+//             name="userSearch"
+//             type="text"
+//             className="search-bar"
+//             placeholder="Search a friend"
+//           />
+//         </form>
+//         {userSearch === "" ? null : (
+//           <ul>
+//             {userInfo.map(userElement => {
+//               return (
+//                 <li key={userElement._id}>
+//                   <h3>{userElement.name}</h3>
+//                   <img src={userElement.profileImg} />
+//                 </li>
+//               );
+//             })}
+//           </ul>
+//         )}
+//       </section>
+//     );
+//   }
+// }
+
+// export default SearchUser;

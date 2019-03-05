@@ -1,5 +1,6 @@
 import React from "react";
 import Chatkit from "@pusher/chatkit";
+<<<<<<< HEAD:src/AppMessenger.js
 import MessageList from "./components/MessageList";
 import SendMessageForm from "./components/SendMessageForm";
 import RoomList from "./components/RoomList";
@@ -9,11 +10,19 @@ import SearchBar from './components/SearchBar';
 import GifList from "./GifList";
 import axios from "axios";
 import { getUserDetails } from "../api";
+=======
+import MessageList from "./MessageList";
+import SendMessageForm from "./SendMessageForm";
+import RoomList from "./RoomList";
+import NewRoomForm from "./NewRoomForm.js";
+import Search from "./Search.js";
+import OnlineUser from "./onlineUser.js";
+>>>>>>> 8efadd4c7afc7fc6332d34b3279eb2015addd63f:src/components/AppMessenger.js
 
-import { tokenUrl, instanceLocator } from "./config";
+import { tokenUrl, instanceLocator } from "../config";
 class AppMessenger extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       roomId: null,
       messages: [],
@@ -29,21 +38,22 @@ class AppMessenger extends React.Component {
   }
 
   componentDidMount() {
-    const { userInfo } = userInfo.pseudo
-    console.log(userInfo.pseudo)
+    // const { userInfo } = userInfo.name;
+    // console.log(userInfo.name);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
+      // userId: this.props.currentUser._id,
       userId: "Kevin",
       tokenProvider: new Chatkit.TokenProvider({
         url: tokenUrl
       })
     });
+
     chatManager
       .connect()
       .then(currentUser => {
         this.currentUser = currentUser;
-        // CREATE A COMPONENT FOR ONLINE CURRENT USER
-        console.log(this.currentUser.rooms[1].userIds);
+
         this.getRooms();
       })
       .catch(err => console.log("error on connecting: ", err));
@@ -114,12 +124,15 @@ class AppMessenger extends React.Component {
   render() {
     return (
       <div className="AppMessenger">
-        <SearchUser user={this.props.user} />
+        <Search />
+        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
         <RoomList
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
           roomId={this.state.roomId}
         />
+
+        <OnlineUser />
         <MessageList
           roomId={this.state.roomId}
           messages={this.state.messages}
@@ -132,7 +145,7 @@ class AppMessenger extends React.Component {
         <GifList gifs={this.state.gifs} /> 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
 
-        <NewRoomForm createRoom={this.createRoom} />
+        {/* <NewRoomForm createRoom={this.createRoom} /> // tot create room with button  */}
       </div>
     );
   }

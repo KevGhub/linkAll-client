@@ -10,14 +10,14 @@ class SignupForm extends Component {
       fullName: "",
       email: "",
       originalPassword: "",
-      pseudo: "",
+      name: "", // PSEUDO linked to CHATKIT
       age: 0,
       location: "",
-      profileImg: "",
+      avatarURL: "", // linked to CHATKIT
       gender: "",
-      description: ""
+      description: "",
+      id: "" // created for CHATKIT id
     };
-
   }
 
   genericOnChange(event) {
@@ -34,9 +34,7 @@ class SignupForm extends Component {
     });
   }
 
-
   render() {
-
     return (
       <section className="SignupForm">
         <div>
@@ -44,7 +42,7 @@ class SignupForm extends Component {
 
           <form onSubmit={event => this.handleSubmit(event)}>
             <label>
-              Full Name:
+              Name:
               <input
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.fullName}
@@ -55,33 +53,11 @@ class SignupForm extends Component {
             </label>
 
             <label>
-              Email:
-              <input
-                onChange={event => this.genericOnChange(event)}
-                value={this.state.email}
-                name="email"
-                type="email"
-                placeholder="Your email address"
-              />
-            </label>
-
-            <label>
-              Password (with 1 number minimum):
-              <input
-                onChange={event => this.genericOnChange(event)}
-                value={this.state.originalPassword}
-                name="originalPassword"
-                type="password"
-                placeholder="Your password"
-              />
-            </label>
-
-            <label>
               Pseudo:
               <input
                 onChange={event => this.genericOnChange(event)}
-                value={this.state.pseudo}
-                name="pseudo"
+                value={this.state.name}
+                name="name"
                 type="text"
                 placeholder="Your pseudo"
               />
@@ -95,27 +71,6 @@ class SignupForm extends Component {
                 name="age"
                 type="number"
                 placeholder="Your age (must be at least 18)"
-              />
-            </label>
-
-            <label>
-              Location:
-              <input
-                onChange={event => this.genericOnChange(event)}
-                value={this.state.location}
-                name="location"
-                type="text"
-                placeholder="Your city and country (ex: Paris, FRANCE)"
-              />
-            </label>
-
-            <label>
-              Picture:
-              <input
-                onChange={event => this.genericOnChange(event)}
-                value={this.state.profileImg}
-                name="profileImg"
-                type="file"
               />
             </label>
 
@@ -154,6 +109,49 @@ class SignupForm extends Component {
               />
               <label htmlFor="gender-neutral">Neutral:</label>
             </div>
+
+            <label>
+              Location:
+              <input
+                onChange={event => this.genericOnChange(event)}
+                value={this.state.location}
+                name="location"
+                type="text"
+                placeholder="Your city and country (ex: Paris, FRANCE)"
+              />
+            </label>
+
+            <label>
+              Email:
+              <input
+                onChange={event => this.genericOnChange(event)}
+                value={this.state.email}
+                name="email"
+                type="email"
+                placeholder="Your email address"
+              />
+            </label>
+
+            <label>
+              Password (with 1 number minimum):
+              <input
+                onChange={event => this.genericOnChange(event)}
+                value={this.state.originalPassword}
+                name="originalPassword"
+                type="password"
+                placeholder="Your password"
+              />
+            </label>
+
+            <label>
+              Picture:
+              <input
+                onChange={event => this.genericOnChange(event)}
+                value={this.state.avatarURL}
+                name="avatarURL"
+                type="file"
+              />
+            </label>
 
             <label>
               Description:
