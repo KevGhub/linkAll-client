@@ -4,7 +4,6 @@ import "./HomePage.css";
 import FavoriteFriends from "./FavoriteFriends";
 import FavoriteChannels from "./FavoriteChannels";
 import Search from "./Search";
-import { Link } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
 
@@ -29,7 +28,6 @@ class HomePage extends Component {
           <section>
             <Search />
             <FavoriteChannels />
-            <FavoriteFriends />
           </section>
         </section>
       </div>

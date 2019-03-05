@@ -1,10 +1,11 @@
 import React from "react";
 
+
 class SendMessageForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      message: ""
+      message: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +25,11 @@ class SendMessageForm extends React.Component {
     });
   }
 
+  
+
   render() {
     return (
+
       <form onSubmit={this.handleSubmit} className="send-message-form">
         <input
           disabled={this.props.disabled} // Empeche d'écrire avant de rejoindre une Room
@@ -33,8 +37,11 @@ class SendMessageForm extends React.Component {
           value={this.state.message}
           placeholder="Type your message and hit ENTER"
           type="text"
-        />
+          />
+         
       </form>
+
+     
     );
   }
 }

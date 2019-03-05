@@ -67,7 +67,7 @@ console.log(params);
                 <section className="User-profile">
                     <ul>
                         <li className="User-visual">
-                            <img src={currentUser.profileImg} alt="User Profile Photo" />
+                            <img src={currentUser.profileImg} alt="User Profile " />
                             <h2>{currentUser.pseudo}</h2>
                         </li>
                         <li className="User-info">

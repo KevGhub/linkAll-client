@@ -5,6 +5,10 @@ import SendMessageForm from "./components/SendMessageForm";
 import RoomList from "./components/RoomList";
 import NewRoomForm from "./components/NewRoomForm.js";
 import SearchUser from "./components/SearchUser.js";
+import SearchBar from './components/SearchBar';
+import GifList from "./GifList";
+import axios from "axios";
+import { getUserDetails } from "../api";
 
 import { tokenUrl, instanceLocator } from "./config";
 class AppMessenger extends React.Component {
@@ -15,6 +19,7 @@ class AppMessenger extends React.Component {
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
+      gifs: [],
       userInfo: {}
     };
     this.sendMessage = this.sendMessage.bind(this);
@@ -89,6 +94,13 @@ class AppMessenger extends React.Component {
       roomId: this.state.roomId
     });
   }
+// GIF RELATED----------------------------
+  handleTermChange(term) {
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=${term}&api_key=3fUr3O3KAnYiu437hFaSeaM1Aip5o5Mi
+`)
+      .then(response => { this.setState({ term: response.data })})
+      .catch(err => console.log("error on giphy", err));
+  }
 
   createRoom(name) {
     this.currentUser
@@ -116,6 +128,8 @@ class AppMessenger extends React.Component {
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
         />
+        <SearchBar onTermChange={this.handleTermChange} />
+        <GifList gifs={this.state.gifs} /> 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
 
         <NewRoomForm createRoom={this.createRoom} />

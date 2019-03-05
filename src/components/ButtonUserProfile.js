@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./ButtonUserProfile.css";
 import { postUserEditDetails } from "../api";
-import { deleteUserProfile } from "../api";
 import { Redirect } from 'react-router-dom';
 
 
