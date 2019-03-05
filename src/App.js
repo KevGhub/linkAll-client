@@ -106,6 +106,7 @@ class App extends Component {
               return (
                 <UserAccount
                   currentUser={this.state.currentUser}
+                  editSuccess={user => this.updateUser(user)}
                   match={props.match}
                 />
               );

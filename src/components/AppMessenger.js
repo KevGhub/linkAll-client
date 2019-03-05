@@ -5,9 +5,9 @@ import SendMessageForm from "./SendMessageForm";
 import RoomList from "./RoomList";
 import Search from "./Search.js";
 import OnlineUser from "./onlineUser.js";
-// import SearchBar from "./SearchBar";
-// import GifList from "./GifList";
-// import axios from "axios";
+import SearchBar from "./SearchBar";
+import GifList from "./GifList";
+import axios from "axios";
 
 import { tokenUrl, instanceLocator } from "../config.js";
 class AppMessenger extends React.Component {
@@ -18,13 +18,13 @@ class AppMessenger extends React.Component {
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
-      userInfo: {}
+      gifs: []
     };
     this.sendMessage = this.sendMessage.bind(this);
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
     this.getRooms = this.getRooms.bind(this);
     this.createRoom = this.createRoom.bind(this);
-    // this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   componentDidMount() {
@@ -105,22 +105,24 @@ class AppMessenger extends React.Component {
   }
 
   // GIF RELATED----------------------------
-  //   handleTermChange(term) {
-  //     axios
-  //       .get(
-  //         `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=3fUr3O3KAnYiu437hFaSeaM1Aip5o5Mi
-  // `
-  //       )
-  //       .then(response => {
-  //         this.setState({ term: response.data });
-  //       })
-  //       .catch(err => console.log("error on giphy", err));
-  //   }
+  handleTermChange(term) {
+    const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=3fUr3O3KAnYiu437hFaSeaM1Aip5o5Mi`
+      axios
+        .get(url)
+        .then(response => {
+          this.setState({ gifs: response.data.data });
+        })
+        .catch(err => console.log("error on giphy", err));
+    }
 
   render() {
     return (
       <div className="AppMessenger">
         <Search />
+        <div className="Gif-search">
+          <SearchBar onTermChange={this.handleTermChange} />
+          <GifList gifs={this.state.gifs} />
+        </div>
         {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
         <RoomList
           subscribeToRoom={this.subscribeToRoom}
@@ -137,8 +139,7 @@ class AppMessenger extends React.Component {
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
         />
-        {/* <SearchBar onTermChange={this.handleTermChange} />
-        <GifList gifs={this.state.gifs} /> */}
+       
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
 
         {/* <NewRoomForm createRoom={this.createRoom} /> // tot create room with button  */}

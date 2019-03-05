@@ -37,7 +37,7 @@ body {
     "o m m m m m"
     "o m m m m m"
     "o m m m m m"
-    "n s s s s s";
+    "n s s s g g";
 }
 
 .new-room-form {
@@ -62,7 +62,9 @@ body {
 .send-message-form {
   grid-area: s;
 }
-
+.SearchBar {
+  grid-area: g;
+}
 /* REST OF CSS */
 .rooms-list {
   box-sizing: border-box;

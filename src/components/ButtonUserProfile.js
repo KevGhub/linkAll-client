@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./ButtonUserProfile.css";
 import { postUserEditDetails } from "../api";
-import { deleteUserProfile } from "../api";
 import { Redirect } from "react-router-dom";
 
 class ButtonUserProfile extends Component {
@@ -18,11 +17,9 @@ class ButtonUserProfile extends Component {
 
   handleEditSubmit(event) {
     event.preventDefault();
-
-    // eslint-disable-next-line no-undef
-    getUserEditDetails(this.state).then(response => {
+    postUserEditDetails(this.state).then(response => {
       console.log("User", response.data);
-      this.setState({ userInfo: response.data });
+      this.props.editSuccess(response.data);
     });
   }
 
@@ -41,7 +38,6 @@ class ButtonUserProfile extends Component {
                 placeholder="Your name"
               />
             </label>
-
 
             <label>
               Age:

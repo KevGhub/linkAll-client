@@ -22,13 +22,18 @@ class UserAccount extends Component {
     });
   }
 
-  deleteProfile() {}
+  deleteProfile() {
+
+
+  }
 
   render() {
     const { userInfo, isEditOpen } = this.state;
 
     console.log(userInfo);
     const { currentUser } = this.props;
+    
+    
     return (
       <div className="UserAccount">
         <section className="User-profile">
@@ -36,17 +41,20 @@ class UserAccount extends Component {
             <li className="User-visual">
               <img src={userInfo.avatarURL} alt="User Profile " />
               <h2>{userInfo.name}</h2>
+              <p>{userInfo.fullName}</p>
+              <b>{userInfo.email}</b>
             </li>
             <li className="User-info">
               <b>{userInfo.location}</b>
               <p>
                 <i>{userInfo.age}</i>
+                <i>{userInfo.gender}</i>
               </p>
               <p>{userInfo.description}</p>
             </li>
           </ul>
 
-          {currentUser.name === userInfo.name ? (
+        
             <div>
               <Link to={`/account/${userInfo.name}/edit`}>
                 Edit your profile
@@ -56,19 +64,29 @@ class UserAccount extends Component {
                 Delete your profile
               </Link>
             </div>
-          ) : (
-            <div>
-              <button>hello</button>
-            </div>
-          )}
+
+       
         </section>{" "}
         {/*end section user-profile */}
         <Switch>
           <Route
             path="/account/:userName/edit"
             render={() => {
-              return <ButtonUserProfile userInfo={currentUser} />;
+              return <ButtonUserProfile
+                userInfo={currentUser} 
+                editSuccess={this.props.editSuccess} />;
             }}
+          />
+          <Route
+            path="/account/:userName/delete"
+            render={() => {
+              return (
+                <div className="verif-delete">
+                  <h2>To confirm press the delete button</h2>
+                </div>
+              );  
+            }}
+          />
           />
         </Switch>
         <section className="Fav-channels">
@@ -88,10 +106,7 @@ class UserAccount extends Component {
 
                     </ul> */}
         </section>
-        <section>
-          <h2>Friends</h2>
-          {/* insert favorites profiles component */}
-        </section>
+
       </div>
     );
   }
