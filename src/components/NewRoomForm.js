@@ -1,45 +1,53 @@
-import React from "react";
+//#############################################################
+//#############################################################
+//#############################################################
+//############### TO CREATE A ROOM WITH BUTTON  #####################
+//#############################################################
+//#################### TO EXPORT IN APPMESSENGER.JS #########
+//#############################################################
 
-class NewRoomForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      roomName: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+// import React from "react";
 
-  handleChange(event) {
-    this.setState({
-      roomName: event.target.value
-    });
-  }
+// class NewRoomForm extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       roomName: ""
+//     };
+//     this.handleChange = this.handleChange.bind(this);
+//     this.handleSubmit = this.handleSubmit.bind(this);
+//   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.createRoom(this.state.roomName);
-    this.setState({ roomName: "" });
-  }
+//   handleChange(event) {
+//     this.setState({
+//       roomName: event.target.value
+//     });
+//   }
 
-  render() {
-    return (
-      <div className="new-room-form">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            value={this.state.roomName}
-            onChange={this.handleChange}
-            type="text"
-            placeholder="create Room"
-            required
-          />
-          <button id="create-room-btn" type="submit">
-            +
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+//   handleSubmit(event) {
+//     event.preventDefault();
+//     this.props.createRoom(this.state.roomName);
+//     this.setState({ roomName: "" });
+//   }
 
-export default NewRoomForm;
+//   render() {
+//     return (
+//       <div className="new-room-form">
+//         <form onSubmit={this.handleSubmit}>
+//           <input
+//             value={this.state.roomName}
+//             onChange={this.handleChange}
+//             type="text"
+//             placeholder="create Room"
+//             required
+//           />
+//           <button id="create-room-btn" type="submit">
+//             +
+//           </button>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
+
+// export default NewRoomForm;
