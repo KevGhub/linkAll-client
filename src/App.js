@@ -63,7 +63,7 @@ class App extends Component {
                   <NavLink to={getUseraddress(this.state.currentUser)}>
                     {this.state.currentUser.name}
                     <img
-                      src={this.state.currentUser.profileImg}
+                      src={this.state.currentUser.avatarURL}
                       alt="User-Img"
                     />
                   </NavLink>
