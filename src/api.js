@@ -32,12 +32,12 @@ export function getCountries() {
 
 // USER ###################################################################
 //-------------------------------------------------------------------------
-export function getUserDetails(userPseudo) {
-   return backendApi.get(`/api/account/${userPseudo}`).catch(errorHandler)
+export function getUserDetails(userName) {
+   return backendApi.get(`/api/account/${userName}`).catch(errorHandler)
  }
 
-export function getUserDetailsForEdit(userPseudoToEdit) {
-  return backendApi.get(`/api/account/${userPseudoToEdit}/edit`).catch(errorHandler)
+export function getUserDetailsForEdit(userNameToEdit) {
+  return backendApi.get(`/api/account/${userNameToEdit}/edit`).catch(errorHandler)
 }
 export function postUserEditDetails(updatedInfo) {
   console.log(updatedInfo);
