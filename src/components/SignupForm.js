@@ -11,7 +11,7 @@ class SignupForm extends Component {
       email: "",
       originalPassword: "",
       pseudo: "",
-      age: "",
+      age: 0,
       location: "",
       profileImg: "",
       gender: "",
@@ -66,7 +66,7 @@ class SignupForm extends Component {
             </label>
 
             <label>
-              Password:
+              Password (with 1 number minimum):
               <input
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.originalPassword}

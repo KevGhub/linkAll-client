@@ -8,7 +8,7 @@ import Search from "./components/Search";
 import { getLogOut } from './api'
 import UserAccount from "./components/UserAccount";
 
-function getUserddress(user) {
+function getUseraddress(user) {
   return `/account/${user.pseudo}`;
 }
 
@@ -23,11 +23,10 @@ class App extends Component {
     this.state = {
       currentUser: userInfo
     };
- 
   }
 
   updateUser(newUser) {
-    console.log("hello", newUser, localStorage.getItem("currentUser"))
+    console.log("hello", newUser, localStorage.getItem("currentUser"));
 
     if (newUser) {
       //save the user info in localstorage if he's log in
@@ -45,7 +44,7 @@ class App extends Component {
     getLogOut().then(response => {
       console.log("Log Out", response.data);
       this.updateUser(null);
-    })
+    });
   }
 
 
@@ -59,11 +58,10 @@ class App extends Component {
               <img className="App-logo" src={logo} alt="logo" />
             </NavLink>
 
-
             {this.state.currentUser ? (
               <span>
                 <div className="User-connected">
-                  <NavLink to={getUserddress(this.state.currentUser)}>
+                  <NavLink to={getUseraddress(this.state.currentUser)}>
                     {this.state.currentUser.pseudo}
                     <img src={this.state.currentUser.profileImg} alt="User-Img" />
                   </NavLink>
@@ -75,25 +73,30 @@ class App extends Component {
                 </div>
               </span>
             ) : (
-                <span>
-                  <NavLink to="/">
-                    <button>Log In</button>
-                  </NavLink>
-                </span>
-              )}
-            
+              <span>
+                <NavLink to="/">
+                  <button>Log In</button>
+                </NavLink>
+              </span>
+            )}
           </nav>
         </header>
-              
-        <Switch>
 
+        <Switch>
           {/* <Route exact path="/" component={HomePage}/> */}
-          <Route exact path="/" render={() => {
-            return <HomePage
-              currentUser={this.state.currentUser}
-              signupSuccess={user => this.updateUser(user)}
-              loginSuccess={user => this.updateUser(user)} />
-          }} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                <HomePage
+                  currentUser={this.state.currentUser}
+                  signupSuccess={user => this.updateUser(user)}
+                  loginSuccess={user => this.updateUser(user)}
+                />
+              );
+            }}
+          />
           <Route path="/countries" component={Search} />
           <Route path="/account/:userPseudo" render={props => {
             return <UserAccount
@@ -104,12 +107,10 @@ class App extends Component {
          
           {/*  404 route should go LAST */}
           <Route component={NotFound} />
-
         </Switch>
       </div>
     );
-  }            
+  }
 }
-
 
 export default App;
