@@ -34,7 +34,7 @@ class UserAccount extends Component {
         <section className="User-profile">
           <ul>
             <li className="User-visual">
-              <img src={userInfo.profileImg} alt="User Profile Photo" />
+              <img src={userInfo.avatarURL} alt="User Profile Photo" />
               <h2>{userInfo.name}</h2>
             </li>
             <li className="User-info">

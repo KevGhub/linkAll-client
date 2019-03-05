@@ -25,8 +25,8 @@ class AppMessenger extends React.Component {
   }
 
   componentDidMount() {
-    const { userInfo } = userInfo.name;
-    console.log(userInfo.pseudo);
+    // const { userInfo } = userInfo.name;
+    // console.log(userInfo.name);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
       // userId: this.props.currentUser._id,

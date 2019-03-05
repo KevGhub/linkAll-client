@@ -147,8 +147,8 @@ class SignupForm extends Component {
               Picture:
               <input
                 onChange={event => this.genericOnChange(event)}
-                value={this.state.profileImg}
-                name="profileImg"
+                value={this.state.avatarURL}
+                name="avatarURL"
                 type="file"
               />
             </label>
