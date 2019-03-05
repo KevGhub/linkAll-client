@@ -71,11 +71,11 @@ class Search extends Component {
                   {oneCountry.RoomsCategories.map(oneRoomCategory => {
                     return (
                       <Link
-                        to={`/linkall-messenger/${
-                          oneCountry.name
-                        }/${oneRoomCategory}`}
+                        to={`/linkall-messenger/${oneCountry.name}/${
+                          oneRoomCategory.roomName
+                        }`}
                       >
-                        <h4>{oneRoomCategory}</h4>
+                        <h4>{oneRoomCategory.roomName}</h4>
                       </Link>
                     );
                   })}

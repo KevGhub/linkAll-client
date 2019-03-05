@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Chatkit from "@pusher/chatkit";
+
 import "./SignupForm.css";
 import { postSignUp } from "../api.js";
 
@@ -173,3 +175,19 @@ class SignupForm extends Component {
 }
 
 export default SignupForm;
+
+/*
+
+chatkit.createUser({
+  id: 'userId',
+  name: 'Some name',
+})
+  .then(() => {
+    console.log('User created successfully');
+  }).catch((err) => {
+    console.log(err);
+  });
+
+
+
+*/
