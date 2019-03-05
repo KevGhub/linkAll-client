@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./ButtonUserProfile.css";
 import { postUserEditDetails } from "../api";
-import { Redirect } from 'react-router-dom';
-
+import { deleteUserProfile } from "../api";
+import { Redirect } from "react-router-dom";
 
 class ButtonUserProfile extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ class ButtonUserProfile extends Component {
               Picture:
               <input
                 onChange={event => this.genericOnChange(event)}
-                name="profileImg"
+                name="avatarURL"
                 type="file"
               />
             </label>

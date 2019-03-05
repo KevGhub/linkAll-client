@@ -1,23 +1,11 @@
 import React from "react";
 import Chatkit from "@pusher/chatkit";
-<<<<<<< HEAD:src/AppMessenger.js
-import MessageList from "./components/MessageList";
-import SendMessageForm from "./components/SendMessageForm";
-import RoomList from "./components/RoomList";
-import NewRoomForm from "./components/NewRoomForm.js";
-import SearchUser from "./components/SearchUser.js";
-import SearchBar from './components/SearchBar';
-import GifList from "./GifList";
-import axios from "axios";
-import { getUserDetails } from "../api";
-=======
 import MessageList from "./MessageList";
 import SendMessageForm from "./SendMessageForm";
 import RoomList from "./RoomList";
 import NewRoomForm from "./NewRoomForm.js";
 import Search from "./Search.js";
 import OnlineUser from "./onlineUser.js";
->>>>>>> 8efadd4c7afc7fc6332d34b3279eb2015addd63f:src/components/AppMessenger.js
 
 import { tokenUrl, instanceLocator } from "../config";
 class AppMessenger extends React.Component {
@@ -28,7 +16,6 @@ class AppMessenger extends React.Component {
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
-      gifs: [],
       userInfo: {}
     };
     this.sendMessage = this.sendMessage.bind(this);
@@ -104,13 +91,6 @@ class AppMessenger extends React.Component {
       roomId: this.state.roomId
     });
   }
-// GIF RELATED----------------------------
-  handleTermChange(term) {
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=${term}&api_key=3fUr3O3KAnYiu437hFaSeaM1Aip5o5Mi
-`)
-      .then(response => { this.setState({ term: response.data })})
-      .catch(err => console.log("error on giphy", err));
-  }
 
   createRoom(name) {
     this.currentUser
@@ -141,8 +121,6 @@ class AppMessenger extends React.Component {
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
         />
-        <SearchBar onTermChange={this.handleTermChange} />
-        <GifList gifs={this.state.gifs} /> 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
 
         {/* <NewRoomForm createRoom={this.createRoom} /> // tot create room with button  */}

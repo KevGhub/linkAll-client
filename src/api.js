@@ -6,7 +6,6 @@ const backendApi = axios.create({
   withCredentials: true
 });
 
-
 // ERROR HANDLER ###################################################################
 //----------------------------------------------------------------------------------
 
@@ -32,26 +31,14 @@ export function getCountries() {
 
 // USER ###################################################################
 //-------------------------------------------------------------------------
-export function getUserDetails(userPseudo) {
-   return backendApi.get(`/api/account/${userPseudo}`).catch(errorHandler)
- }
-
-export function getUserDetailsForEdit(userPseudoToEdit) {
-  return backendApi.get(`/api/account/${userPseudoToEdit}/edit`).catch(errorHandler)
-}
-export function postUserEditDetails(updatedInfo) {
-  console.log(updatedInfo);
-  
-  return backendApi
-    .post(`/api/account/${updatedInfo}/edit`, updatedInfo)
-    .catch(errorHandler)
+export function getUserDetails(userName) {
+  return backendApi.get(`/api/account/${userName}`).catch(errorHandler);
 }
 
-export function deleteUserProfile(userDeleted) {
-  console.log(userDeleted)
+export function getUserEditDetails(updatedInfo) {
   return backendApi
-    .delete(`/api/account/${userDeleted.pseudo}/delete`, userDeleted)
-    .catch(errorHandler)
+    .post(`/api/account/${updatedInfo.name}/edit-user`, updatedInfo)
+    .catch(errorHandler);
 }
 
 // AUTH ###################################################################

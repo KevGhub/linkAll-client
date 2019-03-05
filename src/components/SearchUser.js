@@ -69,7 +69,7 @@
 //               return (
 //                 <li key={userElement._id}>
 //                   <h3>{userElement.name}</h3>
-//                   <img src={userElement.profileImg} />
+//                   <img src={userElement.avatarURL} />
 //                 </li>
 //               );
 //             })}
