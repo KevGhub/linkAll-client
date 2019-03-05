@@ -36,9 +36,21 @@ export function getUserDetails(userPseudo) {
    return backendApi.get(`/api/account/${userPseudo}`).catch(errorHandler)
  }
 
-export function getUserEditDetails(updatedInfo) {
+export function getUserDetailsForEdit(userPseudoToEdit) {
+  return backendApi.get(`/api/account/${userPseudoToEdit}/edit`).catch(errorHandler)
+}
+export function postUserEditDetails(updatedInfo) {
+  console.log(updatedInfo);
+  
   return backendApi
-    .post(`/api/account/${updatedInfo.pseudo}/edit-user`, updatedInfo)
+    .post(`/api/account/${updatedInfo}/edit`, updatedInfo)
+    .catch(errorHandler)
+}
+
+export function deleteUserProfile(userDeleted) {
+  console.log(userDeleted)
+  return backendApi
+    .delete(`/api/account/${userDeleted.pseudo}/delete`, userDeleted)
     .catch(errorHandler)
 }
 

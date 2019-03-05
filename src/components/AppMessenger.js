@@ -15,7 +15,8 @@ class AppMessenger extends React.Component {
       roomId: null,
       messages: [],
       joinableRooms: [],
-      joinedRooms: []
+      joinedRooms: [],
+      userInfo: {}
     };
     this.sendMessage = this.sendMessage.bind(this);
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
@@ -24,7 +25,8 @@ class AppMessenger extends React.Component {
   }
 
   componentDidMount() {
-    console.log("props", this.props);
+    const { userInfo } = userInfo.name;
+    console.log(userInfo.pseudo);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
       // userId: this.props.currentUser._id,
