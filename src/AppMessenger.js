@@ -4,6 +4,7 @@ import MessageList from "./components/MessageList";
 import SendMessageForm from "./components/SendMessageForm";
 import RoomList from "./components/RoomList";
 import NewRoomForm from "./components/NewRoomForm";
+import { getUserDetails } from "../api";
 
 import { tokenUrl, instanceLocator } from "./config";
 class AppMessenger extends React.Component {
@@ -13,7 +14,8 @@ class AppMessenger extends React.Component {
       roomId: null,
       messages: [],
       joinableRooms: [],
-      joinedRooms: []
+      joinedRooms: [],
+      userInfo: {}
     };
     this.sendMessage = this.sendMessage.bind(this);
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
@@ -22,6 +24,8 @@ class AppMessenger extends React.Component {
   }
 
   componentDidMount() {
+    const { userInfo } = userInfo.pseudo
+    console.log(userInfo.pseudo)
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
       userId: "Kevin",

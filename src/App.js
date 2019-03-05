@@ -98,6 +98,7 @@ class App extends Component {
           <Route path="/account/:userPseudo" render={props => {
             return <UserAccount
               currentUser={this.state.currentUser}
+              onUserDelete={() => this.updateUser(null)}
               match={props.match} />;
           }}/>
          

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./ButtonUserProfile.css";
-import { getUserEditDetails } from "../api.js";
+import { postUserEditDetails } from "../api";
+import { deleteUserProfile } from "../api";
+import { Redirect } from 'react-router-dom';
 
 
 class ButtonUserProfile extends Component {
@@ -8,7 +10,7 @@ class ButtonUserProfile extends Component {
     constructor(props) {
         super(props);
         // copy the userInfo object as our state
-        this.state = {...this.props.userInfo};
+        this.state = { ...this.props.userInfo, isDelete: false };
     }
 
     genericOnChange(event) {
@@ -17,21 +19,27 @@ class ButtonUserProfile extends Component {
 
     }
 
-
     handleEditSubmit(event) {
         event.preventDefault();
 
-        getUserEditDetails(this.state)
+        postUserEditDetails(this.state)
             .then(response => {
-                console.log("User", response.data);
+                console.log("User UPDATE", response.data);
                 this.setState({ userInfo: response.data })
             })
 
     }
 
+
+    
+
+    
+
+
     render() {
-
-
+        if (this.state.isDelete) {
+            return <Redirect to="/" />;
+        }
 
         return (
             <div className="ButtonUserProfile">
@@ -46,17 +54,6 @@ class ButtonUserProfile extends Component {
                                 name="fullName"
                                 type="text"
                                 placeholder="Your name"
-                            />
-                        </label>
-
-                        <label>
-                            Pseudo:
-                            <input
-                                onChange={event => this.genericOnChange(event)}
-                                value={this.state.pseudo}
-                                name="pseudo"
-                                type="text"
-                                placeholder="Your pseudo"
                             />
                         </label>
 
@@ -138,10 +135,12 @@ class ButtonUserProfile extends Component {
                             />
                         </label>
 
-                        <button>Save</button>
+                        <button>Save changes</button>
                     </form>
                 </div>   
             
+
+
             </div>
         )
     }

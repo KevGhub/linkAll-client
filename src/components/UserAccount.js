@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 
 import "./UserAccount.css";
 import "../userDefault.svg";
 import { getUserDetails } from "../api";
+import { deleteUserProfile } from "../api";
 import ButtonUserProfile from './ButtonUserProfile';
 
 
@@ -19,79 +20,84 @@ class UserAccount extends Component {
     componentDidMount() {
 
         const { params } = this.props.match;
+        
         getUserDetails(params.userPseudo)
             .then(response => {
-                console.log("User", response.data);
+                console.log("User UPDATE", response.data);
                 this.setState({ userInfo: response.data })
             })
         
     }
 
-    deleteProfile() {
-
+    deleteClick() {
+        console.log(this.props.match.params.userPseudo, "eeeeeee");
+    
+        deleteUserProfile(this.props.match.params.userPseudo).then(response => {
+            console.log("Delete", response.data);
+            this.setState({ isDelete: true });
+            this.props.onUserDelete();
+        });
     }
 
+    deleteSuccess() {
+        const { params } = this.props.match;
+console.log(params);
+
+        deleteUserProfile(params.userPseudo)
+            .then(response => {
+                console.log("User DELETED", response.data);
+            })
+    }
+
+
     render() {
-        const { userInfo, isEditOpen } = this.state;
+       
         const { currentUser } = this.props;
-        return (
+        
+        console.log("USER INFO: ", currentUser);
+
+        return this.state.isDelete ? (
+          
+             <Redirect exact to="/" />
+        )
+            :
+        (
             <div className="UserAccount">
                 
                 <section className="User-profile">
                     <ul>
                         <li className="User-visual">
-                            <img src={userInfo.profileImg} alt="User Profile Photo" />
-                            <h2>{userInfo.pseudo}</h2>
+                            <img src={currentUser.profileImg} alt="User Profile Photo" />
+                            <h2>{currentUser.pseudo}</h2>
                         </li>
                         <li className="User-info">
-                            <b>{userInfo.location}</b>
-                            <p><i>{userInfo.age}</i></p>
-                            <p>{userInfo.description}</p>
+                            <b>{currentUser.location}</b>
+                            <p><i>{currentUser.age}</i></p>
+                            <p>{currentUser.description}</p>
                         </li>
                     </ul>
 
-                    {currentUser.pseudo === userInfo.pseudo ? (
-                        <div>
-                            <Link to={`/account/${userInfo.pseudo}/edit`}>Edit your profile</Link>
+                    <div>
+                        <Link to={`/account/${currentUser.pseudo}/edit`}>Edit your profile</Link>
         
-                            <Link to={`/account/${userInfo.pseudo}/delete`}>Delete your profile</Link>
-                        </div>
-                    ) : (
-                        <div>
-                             <button>hello</button>   
-                        </div>
-                    )}
+                        <Link to={`/account/${currentUser.pseudo}/delete`}>Delete your profile</Link>
+                    </div>
+    
                 </section> {/*end section user-profile */}
 
                 <Switch>
-                    <Route path="/account/:userPseudo/edit" render={() => {
+                    <Route exact path="/account/:userPseudo/edit" render={() => {
                         return <ButtonUserProfile userInfo={currentUser} />;
+                    }} />
+                    <Route exact path="/account/:userPseudo/delete" render={() => {
+                        return <button onClick={() => this.deleteClick()}>Delete</button>
                     }} />
                 </Switch>
 
                 <section className="Fav-channels">
                     <h2>Favorites Channels</h2>
-                    {/* <ul>
-                        {phoneArray.map(onePhone => {
-                            return (
-                                <li key={onePhone._id}>
-                                    <h3>
-                                        <Link to={getPhoneAddress(onePhone)}>{onePhone.phoneModel}</Link> </h3>
-                                    <p>{onePhone.brand}</p>
-                                    <p>{onePhone.price}</p>
-                                    <img src={onePhone.image} />
-                                </li>
-                            )
-                        })}
 
-                    </ul> */}
                 </section>
-
-                <section>
-                    <h2>Friends</h2>
-                    {/* insert favorites profiles component */}
-                </section>
-
 
             </div>
         );
