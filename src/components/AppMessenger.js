@@ -3,11 +3,13 @@ import Chatkit from "@pusher/chatkit";
 import MessageList from "./MessageList";
 import SendMessageForm from "./SendMessageForm";
 import RoomList from "./RoomList";
-import NewRoomForm from "./NewRoomForm.js";
 import Search from "./Search.js";
 import OnlineUser from "./onlineUser.js";
+// import SearchBar from "./SearchBar";
+// import GifList from "./GifList";
+// import axios from "axios";
 
-import { tokenUrl, instanceLocator } from "../config";
+import { tokenUrl, instanceLocator } from "../config.js";
 class AppMessenger extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,7 @@ class AppMessenger extends React.Component {
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
     this.getRooms = this.getRooms.bind(this);
     this.createRoom = this.createRoom.bind(this);
+    // this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   componentDidMount() {
@@ -101,6 +104,19 @@ class AppMessenger extends React.Component {
       .catch(err => console.log("error with createRoom: ", err));
   }
 
+  // GIF RELATED----------------------------
+  //   handleTermChange(term) {
+  //     axios
+  //       .get(
+  //         `http://api.giphy.com/v1/gifs/search?q=${term}&api_key=3fUr3O3KAnYiu437hFaSeaM1Aip5o5Mi
+  // `
+  //       )
+  //       .then(response => {
+  //         this.setState({ term: response.data });
+  //       })
+  //       .catch(err => console.log("error on giphy", err));
+  //   }
+
   render() {
     return (
       <div className="AppMessenger">
@@ -121,6 +137,8 @@ class AppMessenger extends React.Component {
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
         />
+        {/* <SearchBar onTermChange={this.handleTermChange} />
+        <GifList gifs={this.state.gifs} /> */}
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
 
         {/* <NewRoomForm createRoom={this.createRoom} /> // tot create room with button  */}
@@ -130,5 +148,3 @@ class AppMessenger extends React.Component {
 }
 
 export default AppMessenger;
-
-// id Romm random : 19388721

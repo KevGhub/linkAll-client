@@ -35,6 +35,19 @@ export function getUserDetails(userName) {
   return backendApi.get(`/api/account/${userName}`).catch(errorHandler);
 }
 
+export function getUserDetailsForEdit(userNameToEdit) {
+  return backendApi
+    .get(`/api/account/${userNameToEdit}/edit`)
+    .catch(errorHandler);
+}
+export function postUserEditDetails(updatedInfo) {
+  console.log(updatedInfo);
+
+  return backendApi
+    .post(`/api/account/${updatedInfo}/edit`, updatedInfo)
+    .catch(errorHandler);
+}
+
 export function getUserEditDetails(updatedInfo) {
   return backendApi
     .post(`/api/account/${updatedInfo.name}/edit-user`, updatedInfo)

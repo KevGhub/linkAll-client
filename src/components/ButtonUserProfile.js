@@ -42,16 +42,6 @@ class ButtonUserProfile extends Component {
               />
             </label>
 
-            <label>
-              Pseudo:
-              <input
-                onChange={event => this.genericOnChange(event)}
-                value={this.state.name}
-                name="name"
-                type="text"
-                placeholder="Your pseudo"
-              />
-            </label>
 
             <label>
               Age:
@@ -83,42 +73,6 @@ class ButtonUserProfile extends Component {
                 type="file"
               />
             </label>
-
-            <div>
-              <p>Gender</p>
-              <input
-                onChange={event => this.genericOnChange(event)}
-                checked={this.state.gender === "female"}
-                value="female"
-                name="gender"
-                type="radio"
-                placeholder="Your name"
-                id="gender-female"
-              />
-              <label htmlFor="gender-female">Female:</label>
-
-              <input
-                onChange={event => this.genericOnChange(event)}
-                checked={this.state.gender === "male"}
-                value="male"
-                name="gender"
-                type="radio"
-                placeholder="Your name"
-                id="gender-male"
-              />
-              <label htmlFor="gender-male">Male:</label>
-
-              <input
-                onChange={event => this.genericOnChange(event)}
-                checked={this.state.gender === "neutral"}
-                value="neutral"
-                name="gender"
-                type="radio"
-                placeholder="Your name"
-                id="gender-neutral"
-              />
-              <label htmlFor="gender-neutral">Neutral:</label>
-            </div>
 
             <label>
               Description:
