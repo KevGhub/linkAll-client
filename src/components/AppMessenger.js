@@ -1,15 +1,16 @@
 import React from "react";
 import Chatkit from "@pusher/chatkit";
-import MessageList from "./components/MessageList";
-import SendMessageForm from "./components/SendMessageForm";
-import RoomList from "./components/RoomList";
-import NewRoomForm from "./components/NewRoomForm.js";
-import SearchUser from "./components/SearchUser.js";
+import MessageList from "./MessageList";
+import SendMessageForm from "./SendMessageForm";
+import RoomList from "./RoomList";
+import NewRoomForm from "./NewRoomForm.js";
+import Search from "./Search.js";
+import OnlineUser from "./onlineUser.js";
 
-import { tokenUrl, instanceLocator } from "./config";
+import { tokenUrl, instanceLocator } from "../config";
 class AppMessenger extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       roomId: null,
       messages: [],
@@ -23,19 +24,21 @@ class AppMessenger extends React.Component {
   }
 
   componentDidMount() {
+    console.log("props", this.props);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
+      // userId: this.props.currentUser._id,
       userId: "Kevin",
       tokenProvider: new Chatkit.TokenProvider({
         url: tokenUrl
       })
     });
+
     chatManager
       .connect()
       .then(currentUser => {
         this.currentUser = currentUser;
-        // CREATE A COMPONENT FOR ONLINE CURRENT USER
-        console.log(this.currentUser.rooms[1].userIds);
+
         this.getRooms();
       })
       .catch(err => console.log("error on connecting: ", err));
@@ -99,12 +102,15 @@ class AppMessenger extends React.Component {
   render() {
     return (
       <div className="AppMessenger">
-        <SearchUser user={this.props.user} />
+        <Search />
+        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
         <RoomList
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
           roomId={this.state.roomId}
         />
+
+        <OnlineUser />
         <MessageList
           roomId={this.state.roomId}
           messages={this.state.messages}
@@ -115,7 +121,7 @@ class AppMessenger extends React.Component {
         />
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
 
-        <NewRoomForm createRoom={this.createRoom} />
+        {/* <NewRoomForm createRoom={this.createRoom} /> // tot create room with button  */}
       </div>
     );
   }
