@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./ButtonUserProfile.css";
 import { postUserEditDetails } from "../api";
-import { Redirect } from "react-router-dom";
 
 class ButtonUserProfile extends Component {
   constructor(props) {
@@ -18,8 +17,8 @@ class ButtonUserProfile extends Component {
   handleEditSubmit(event) {
     event.preventDefault();
     postUserEditDetails(this.state).then(response => {
-      console.log("User", response.data);
       this.props.editSuccess(response.data);
+      console.log("User", response.data);
     });
   }
 

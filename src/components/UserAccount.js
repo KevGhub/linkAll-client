@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { Link, Switch, Route, Redirect } from "react-router-dom";
-
 import "./UserAccount.css";
 import "../userDefault.svg";
 import { getUserDetails } from "../api";
 import ButtonUserProfile from "./ButtonUserProfile";
+import { getCountries } from "../api.js";
 
 class UserAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: {}
+      userInfo: {},
+      isDeleteOpen: false,
+      countryArray: []
     };
   }
 
@@ -20,21 +22,28 @@ class UserAccount extends Component {
       console.log("User", response.data);
       this.setState({ userInfo: response.data });
     });
+
+    getCountries().then(response => {
+      console.log("Countries", response.data);
+      this.setState({ countryArray: response.data });
+    });
   }
 
-  deleteProfile() {
-
-
+  deleteUser() {
+    this.setState({ isDeleteOpen: true }); 
+    
   }
 
   render() {
-    const { userInfo, isEditOpen } = this.state;
+    const { userInfo } = this.state;
+ 
 
-    console.log(userInfo);
-    const { currentUser } = this.props;
-    
-    
-    return (
+    return this.state.isDeleteOpen ? (
+  
+      <Redirect exact to="/" />
+    )
+    :
+    (
       <div className="UserAccount">
         <section className="User-profile">
           <ul>
@@ -54,7 +63,6 @@ class UserAccount extends Component {
             </li>
           </ul>
 
-        
             <div>
               <Link to={`/account/${userInfo.name}/edit`}>
                 Edit your profile
@@ -66,23 +74,26 @@ class UserAccount extends Component {
             </div>
 
        
-        </section>{" "}
+        </section>
         {/*end section user-profile */}
         <Switch>
           <Route
             path="/account/:userName/edit"
             render={() => {
               return <ButtonUserProfile
-                userInfo={currentUser} 
+                userInfo={this.props.currentUser} 
                 editSuccess={this.props.editSuccess} />;
             }}
-          />
+            />
+            
+               
           <Route
             path="/account/:userName/delete"
             render={() => {
-              return (
+               return  (
                 <div className="verif-delete">
                   <h2>To confirm press the delete button</h2>
+                   <button onClick={(deleteUser) => this.props.deleteSuccess(deleteUser)}>Delete</button>
                 </div>
               );  
             }}
@@ -91,20 +102,7 @@ class UserAccount extends Component {
         </Switch>
         <section className="Fav-channels">
           <h2>Favorites Channels</h2>
-          {/* <ul>
-                        {phoneArray.map(onePhone => {
-                            return (
-                                <li key={onePhone._id}>
-                                    <h3>
-                                        <Link to={getPhoneAddress(onePhone)}>{onePhone.phoneModel}</Link> </h3>
-                                    <p>{onePhone.brand}</p>
-                                    <p>{onePhone.price}</p>
-                                    <img src={onePhone.image} />
-                                </li>
-                            )
-                        })}
-
-                    </ul> */}
+          
         </section>
 
       </div>

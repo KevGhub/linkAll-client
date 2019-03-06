@@ -6,6 +6,7 @@ import NotFound from "./components/NotFound.js";
 import HomePage from "./components/HomePage.js";
 import Search from "./components/Search";
 import { getLogOut } from "./api";
+import { postUserDelete } from "./api";
 import UserAccount from "./components/UserAccount";
 import AppMessenger from "./components/AppMessenger.js";
 
@@ -47,6 +48,15 @@ class App extends Component {
       this.updateUser(null);
     });
   }
+
+  deleteProfile() {
+    postUserDelete().then(response => {
+      console.log("DELETED", response.data);
+      this.updateUser(null);
+    });
+
+  }
+
 
   render() {
     return (
@@ -107,6 +117,7 @@ class App extends Component {
                 <UserAccount
                   currentUser={this.state.currentUser}
                   editSuccess={user => this.updateUser(user)}
+                  deleteSuccess={user => this.updateUser(user)}
                   match={props.match}
                 />
               );

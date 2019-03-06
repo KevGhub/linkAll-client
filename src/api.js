@@ -47,6 +47,12 @@ export function postUserEditDetails(updatedInfo) {
     .catch(errorHandler);
 }
 
+export function postUserDelete(deletedUser) {
+  return backendApi
+    .post(`/api/account/${deletedUser.name}/delete`, deletedUser)
+    .catch(errorHandler);
+}
+
 // AUTH ###################################################################
 //-------------------------------------------------------------------------
 export function postSignUp(userSubmission) {
