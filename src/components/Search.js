@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+// import chatkit from "@pusher/chatkit";
 
 import { getCountries } from "../api.js";
 
@@ -37,7 +38,7 @@ class Search extends Component {
 
   render() {
     const { countryArray, countrySearch } = this.state;
-    console.log(countryArray, countrySearch);
+    // console.log(countryArray, countrySearch);
 
     const lowerSearch = countrySearch.toLowerCase();
     const filteredArray = countryArray.filter(oneCountry => {
@@ -71,6 +72,7 @@ class Search extends Component {
                   {oneCountry.RoomsCategories.map(oneRoomCategory => {
                     return (
                       <Link
+                        key={oneRoomCategory._id}
                         to={`/linkall-messenger/${oneCountry.name}/${
                           oneRoomCategory.roomName
                         }`}
@@ -90,3 +92,10 @@ class Search extends Component {
 }
 
 export default Search;
+
+// chatkit.addUsersToRoom({
+//   roomId: room.id,
+//   userIds: ['alice', 'bob']
+// })
+//   .then(() => console.log('added'))
+//   .catch(err => console.error(err))

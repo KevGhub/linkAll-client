@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Chatkit from "@pusher/chatkit";
 
 import "./SignupForm.css";
 import { postSignUp } from "../api.js";
@@ -190,4 +189,6 @@ chatkit.createUser({
 
 
 
+
+  
 */

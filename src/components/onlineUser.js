@@ -27,7 +27,7 @@ class OnlineUser extends Component {
       .then(currentUser => {
         this.currentUser = currentUser;
         // CREATE A COMPONENT FOR ONLINE CURRENT USER
-        console.log(this.currentUser.rooms[1].userIds);
+        // console.log(this.currentUser.rooms[1].userIds);
         this.setState({ onlineUsers: this.currentUser.rooms[1].userIds });
       })
       .catch(err => console.log("error on connecting: ", err));
@@ -35,12 +35,12 @@ class OnlineUser extends Component {
   render() {
     const { onlineUsers } = this.state;
 
-    console.log(onlineUsers);
+    // console.log(onlineUsers);
 
     return (
       <div>
         {onlineUsers.map(oneName => {
-          return <li> {oneName} </li>;
+          return <li key={oneName}> {oneName} </li>;
         })}
       </div>
     );
