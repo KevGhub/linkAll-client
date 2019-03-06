@@ -70,13 +70,17 @@ class Search extends Component {
 
                   {oneCountry.RoomsCategories.map(oneRoomCategory => {
                     return (
+                      <div>
+
                       <Link
                         to={`/linkall-messenger/${oneCountry.name}/${
                           oneRoomCategory.roomName
                         }`}
-                      >
+                        >
                         <h4>{oneRoomCategory.roomName}</h4>
-                      </Link>
+                        </Link>
+                        <button>add to BookMarKS</button>
+                        </div>
                     );
                   })}
                 </li>

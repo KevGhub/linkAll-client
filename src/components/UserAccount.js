@@ -5,6 +5,7 @@ import "../userDefault.svg";
 import { getUserDetails } from "../api";
 import ButtonUserProfile from "./ButtonUserProfile";
 import { getCountries } from "../api.js";
+import CountryFavList from "./CountryFavList";
 
 class UserAccount extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class UserAccount extends Component {
 
   render() {
     const { userInfo } = this.state;
+    console.log(this.state);
  
 
     return this.state.isDeleteOpen ? (
@@ -102,6 +104,10 @@ class UserAccount extends Component {
         </Switch>
         <section className="Fav-channels">
           <h2>Favorites Channels</h2>
+          <CountryFavList
+              favListImport={this.props.favListImport}
+              countryArray={this.state.countryArray}
+            />
           
         </section>
 

@@ -3,24 +3,26 @@ import { Link } from 'react-router-dom';
 import './CountryCard.css'
 
 
+
+
+
 const CountryCard = ({ country, match }) => <Link to={`${match.url}/${country.id}`} className="column card">
-    <img src={country.avatar} alt="" />
+    <img src={country.flag} alt="country flag" />
     <p className="countrys-card__name">{country.name}</p>
-    <p className="countrys-card__countryname">@{country.countryname}</p>
-    <div className="countrys-card__divider"></div>
-    <div className="countrys-card__stats">
-        <div>
-            <p>{country.followers}</p>
-            <span>Followers</span>
-        </div>
-        <div>
-            <p>{country.following}</p>
-            <span>Following</span>
-        </div>
-        <div>
-            <p>{country.repos}</p>
-            <span>Repositories</span>
-        </div>
-    </div>
+    {country.RoomsCategories.map(oneRoomCategory => {
+        return (
+            <div>
+                <b className="countrys-card__countryname">{oneRoomCategory.roomName}</b>
+                <div className="countrys-card__divider"></div>
+                <div className="countrys-card__stats">
+                    <div><p>{oneRoomCategory.roomName}</p></div>
+                    <div><p>{oneRoomCategory.roomName}</p></div>
+                    <div><p>{oneRoomCategory.roomName}</p></div>
+                </div>
+            </div>
+        );
+    })}
+    
+   
 </Link>;
 export default CountryCard;
