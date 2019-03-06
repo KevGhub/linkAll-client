@@ -44,17 +44,16 @@ export function getUserDetailsForEdit(userNameToEdit) {
     .get(`/api/account/${userNameToEdit}/edit`)
     .catch(errorHandler);
 }
-export function postUserEditDetails(updatedInfo) {
-  console.log(updatedInfo);
 
+export function postUserEditDetails(updatedInfo) {
   return backendApi
-    .post(`/api/account/${updatedInfo}/edit`, updatedInfo)
+    .post(`/api/account/${updatedInfo.name}/edit-user`, updatedInfo)
     .catch(errorHandler);
 }
 
-export function getUserEditDetails(updatedInfo) {
+export function postUserDelete(deletedUser) {
   return backendApi
-    .post(`/api/account/${updatedInfo.name}/edit-user`, updatedInfo)
+    .post(`/api/account/${deletedUser.name}/delete`, deletedUser)
     .catch(errorHandler);
 }
 

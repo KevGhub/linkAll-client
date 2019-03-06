@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 import "./HomePage.css";
-import FavoriteFriends from "./FavoriteFriends";
-import FavoriteChannels from "./FavoriteChannels";
 import Search from "./Search";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
@@ -28,7 +26,6 @@ class HomePage extends Component {
 
           <section>
             <Search />
-            <FavoriteChannels />
           </section>
         </section>
       </div>

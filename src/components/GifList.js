@@ -1,14 +1,18 @@
-// import React from 'react';
-// import GifItem from './GifItem';
+import React from 'react';
+import GifItem from './GifItem';
 
-// const GifList = (props) => {
-//     const gifItems = props.gifs.map((image) => {
-//         return <GifItem key={image.id} gif={image} />
-//     });
 
-//     return (
-//         <ul>{gifItems}</ul>
-//     );
-// };
+const GifList = (props) => {
+    const gifs = props.gifs;  
+   
+    console.log("please......", gifs)
+    const gifItems = gifs.map((image) => {
+        return <GifItem key={image.id} gif={image} />
+    });
 
-// export default GifList;
+    return (
+        <ul>{gifItems}</ul>
+    );
+};
+
+export default GifList;
