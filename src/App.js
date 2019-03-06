@@ -211,9 +211,14 @@ class App extends Component {
             }}
           />
           <Route
-            path="/linkall-messenger"
-            render={() => {
-              return <AppMessenger currentUser={this.state.currentUser} />;
+            path="/linkall-messenger/:countryName/:roomName"
+            render={props => {
+              return (
+                <AppMessenger
+                  match={props.match}
+                  currentUser={this.state.currentUser}
+                />
+              );
             }}
           />
 

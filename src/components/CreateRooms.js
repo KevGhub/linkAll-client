@@ -7,9 +7,8 @@ class CreateRooms extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      creatorId: "",
-      name: "",
-      customData: { flag: "" }
+      countryAmount: 0,
+      roomAmount: 0
     };
   }
 
@@ -17,9 +16,26 @@ class CreateRooms extends Component {
     // CONNECTION FRONT & BACK is HERE :
     // get datat from our Express API (localhost:5555) (now in api.js)
     getCountries().then(response => {
+      const countries = response.data;
       // console.log("our COUNTRIES :", response.data);
       // SAVE the JSON data from the API into the state
-      this.setState({ countryArray: response.data });
+      this.setState({ countryAmount: countries.length });
+
+      countries.forEach(oneCountry => {
+        oneCountry.RoomsCategories.forEach(oneCat => {
+          Chatkit.createRoom({
+            creatorId: "Kevin",
+            name: "my room",
+            customData: { foo: 42 }
+          })
+            .then(() => {
+              console.log("Room created successfully");
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        });
+      });
     });
   }
   render() {
@@ -33,16 +49,6 @@ export default CreateRooms;
 code original
 
 
-chatkit.createRoom({
-  creatorId: 'userId',
-  name: 'my room',
-  customData: { foo: 42 },
-})
-  .then(() => {
-    console.log('Room created successfully');
-  }).catch((err) => {
-    console.log(err);
-  });
 
 
 

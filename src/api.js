@@ -29,6 +29,10 @@ export function getCountries() {
   return backendApi.get("/api/countries").catch(errorHandler);
 }
 
+export function getCountryDetails(countryName) {
+  return backendApi.get(`/api/countries/${countryName}`).catch(errorHandler);
+}
+
 // USER ###################################################################
 //-------------------------------------------------------------------------
 export function getUserDetails(userName) {
