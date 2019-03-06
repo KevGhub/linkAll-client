@@ -23,7 +23,8 @@ class App extends Component {
       userInfo = JSON.parse(userInfo);
     }
     this.state = {
-      currentUser: userInfo
+      currentUser: userInfo,
+      // favorites: []
     };
   }
 
@@ -34,7 +35,6 @@ class App extends Component {
       //save the user info in localstorage if he's log in
       //(turn it into JSON string before saving)
       localStorage.setItem("currentUser", JSON.stringify(newUser));
-      //favorite channels
       
     } else {
       // delete the user info fron localStorage if he's log out
@@ -44,29 +44,6 @@ class App extends Component {
     this.setState({ currentUser: newUser });
   }
 
-  favInitialState() {
-    // Extract the favorite locations from local storage
-    var favorites = [];
-
-    if (localStorage.favorites) {
-      favorites = JSON.parse(localStorage.favorites);
-    } else {
-      localStorage.removeItem("favorites");
-    }
-    
-    this.setState({ favorites: favorites });
-  }
-  
-  toggleFavorite(countries) {
-
-    if (this.isAddressInFavorites(countries)) {
-      this.removeFromFavorites(countries);
-    }
-    else {
-      this.addToFavorites(countries);
-    }
-
-  }
 
   addToFavorites(countries) {
 
@@ -113,7 +90,7 @@ class App extends Component {
 
   }
 
-  isAddressInFavorites(countries) {
+  isCountryInFavorites(countries) {
 
     var favorites = this.state.favorites;
 
@@ -192,6 +169,7 @@ class App extends Component {
                   signupSuccess={user => this.updateUser(user)}
                   loginSuccess={user => this.updateUser(user)}
                   favListImport={() => this.favInitialState()}
+                  toggleFav={() => this.toggleFavorite()}
                 />
               );
             }}
@@ -205,6 +183,8 @@ class App extends Component {
                   currentUser={this.state.currentUser}
                   editSuccess={user => this.updateUser(user)}
                   deleteSuccess={user => this.updateUser(user)}
+                  favListImport={() => this.favInitialState()}
+                  toggleFav={() => this.toggleFavorite()}
                   match={props.match}
                 />
               );

@@ -21,8 +21,8 @@ const CountryCard = ({ country, match }) => <Link to={`${match.url}/${country.id
                 </div>
             </div>
         );
-    })}
-    
-   
+    })} 
 </Link>;
+
+
 export default CountryCard;

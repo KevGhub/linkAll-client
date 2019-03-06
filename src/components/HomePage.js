@@ -43,10 +43,10 @@ class HomePage extends Component {
         <section className="SearchChannel">
           <Search />
         </section>
-        <section className="FavListing">
-          {/* <CountryFavList
-            favListImport={this.props.favListImport}/> */}
-        </section>
+        {/* <section className="FavListing">
+          <CountryFavList
+            favListImport={this.props.favListImport}/>
+        </section> */}
       </div>
     );
   }

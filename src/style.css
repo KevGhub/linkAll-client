@@ -99,6 +99,10 @@ body {
   color: var(--secondary-color);
 }
 
+.rooms-list .bookmarked {
+  background-color: deeppink;
+}
+
 .new-room-form {
   padding: 0 5px;
   background: var(--secondary-color);
