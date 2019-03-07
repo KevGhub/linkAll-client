@@ -11,6 +11,8 @@ import axios from "axios";
 
 import { tokenUrl, instanceLocator } from "../config.js";
 import { getCountryDetails } from "../api";
+import CurrentChannelCat from "./CurrentChannelCat.js";
+
 class AppMessenger extends React.Component {
   constructor(props) {
     super(props);
@@ -152,6 +154,7 @@ class AppMessenger extends React.Component {
           rooms={[...this.state.joinedRooms]}
           roomId={this.state.roomId}
         />
+        <CurrentChannelCat rooms={[...this.state.joinedRooms]} />
 
         <OnlineUser />
         <MessageList

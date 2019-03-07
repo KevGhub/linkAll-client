@@ -33,7 +33,7 @@ body {
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 60px;
   grid-template-areas:
     "u r r r r r"
-    "o m m m m m"
+    "c m m m m m"
     "o m m m m m"
     "o m m m m m"
     "o m m m m m"
@@ -59,9 +59,14 @@ body {
   grid-area: o;
 }
 
+.current-channel-cat {
+  grid-area: c;
+}
+
 .send-message-form {
   grid-area: s;
 }
+/* GIPHY : */
 .SearchBar {
   grid-area: g;
 }
