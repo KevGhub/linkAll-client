@@ -24,7 +24,7 @@ class MessageList extends React.Component {
     if (!this.props.roomId) {
       return (
         <div className="message-list">
-          <div className="join-room">&larr; Start to LinkAll!</div>
+          <div className="join-room">&uarr; Start to Link'All!</div>
         </div>
       );
     }
@@ -34,8 +34,7 @@ class MessageList extends React.Component {
           return (
             <Message
               key={message.id}
-              username={message.senderId}
-              // username={message.name}
+              sender={message.sender}
               text={message.text}
             />
           );

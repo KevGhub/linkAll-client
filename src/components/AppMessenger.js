@@ -19,10 +19,13 @@ class AppMessenger extends React.Component {
     this.state = {
       country: {},
       roomId: null,
+      roomUsers: [],
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
-      gifs: []
+      gifs: [],
+      selectedGif: null,
+      modalIsOpen: false
     };
     this.sendMessage = this.sendMessage.bind(this);
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
@@ -35,7 +38,7 @@ class AppMessenger extends React.Component {
     // console.log(userInfo.name);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
-      userId: this.props.currentUser._id,
+      userId: this.props.currentUser.name,
       tokenProvider: new Chatkit.TokenProvider({
         url: tokenUrl
       })
@@ -74,7 +77,6 @@ class AppMessenger extends React.Component {
       const room = response.data.RoomsCategories.find(oneCat => {
         return oneCat.roomName === params.roomName;
       });
-      console.log("hello -------", room);
       this.subscribeToRoom(room.chatkitId);
     });
   }
@@ -110,9 +112,10 @@ class AppMessenger extends React.Component {
       })
 
       .then(room => {
-        console.log("subscribed", room, this.currentUser.joinedRooms);
+        console.log("subscribed", room);
         this.setState({
-          roomId: room.id
+          roomId: room.id,
+          roomUsers: room.userIds
         });
         this.getRooms();
       })
@@ -140,23 +143,46 @@ class AppMessenger extends React.Component {
       .catch(err => console.log("error on giphy", err));
   }
 
+  openModal(gif) {
+    this.setState({
+      modalIsOpen: true,
+      selectedGif: gif
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false,
+      selectedGif: null
+    });
+  }
+
   render() {
+    const { params } = this.props.match;
+    let classList = "AppMessenger";
+    if (params.roomName === "Time Out") {
+      classList = "AppMessenger dark";
+    }
+
     return (
-      <div className="AppMessenger">
-        <Search />
-        <div className="Gif-search">
-          <SearchBar onTermChange={this.handleTermChange} />
-          <GifList gifs={this.state.gifs} />
-        </div>
-        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
+      <div className={classList}>
+        {/* <Search /> */}
+
         <RoomList
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinedRooms]}
           roomId={this.state.roomId}
         />
+
+        <div className="Gif-search">
+          <SearchBar onTermChange={this.handleTermChange} />
+          <GifList gifs={this.state.gifs} />
+        </div>
+        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
         <CurrentChannelCat rooms={[...this.state.joinedRooms]} />
 
-        <OnlineUser />
+        <OnlineUser roomUsers={this.state.roomUsers} />
+
         <MessageList
           roomId={this.state.roomId}
           messages={this.state.messages}

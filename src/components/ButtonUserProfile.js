@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ButtonUserProfile.css";
-import { postUserEditDetails } from "../api";
+import { postUserEditDetails, postFile } from "../api";
 
 class ButtonUserProfile extends Component {
   constructor(props) {
@@ -22,65 +22,80 @@ class ButtonUserProfile extends Component {
     });
   }
 
+  uploadOnChange(event) {
+    const { name, files } = event.target;
+
+    postFile(files).then(response => {
+      console.log("Upload File Info", response.data);
+      this.setState({ [name]: response.data.fileUrl });
+    });
+  }
+
+
   render() {
     return (
       <div className="ButtonUserProfile">
         <div className="EditBtn">
           <form onSubmit={event => this.handleEditSubmit(event)}>
+            <div className="form-group">
             <label>
-              Full Name:
-              <input
+                Full Name:
+            </label>
+              <input className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.fullName}
                 name="fullName"
                 type="text"
                 placeholder="Your name"
               />
-            </label>
-
+            </div>
+            <div className="form-group">
             <label>
               Age:
-              <input
+            </label>
+              <input className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.age}
                 name="age"
                 type="number"
                 placeholder="Your age (must be at least 18)"
               />
-            </label>
-
+            </div>
+            <div className="form-group">
             <label>
               Location:
-              <input
+            </label>
+              <input className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.location}
                 name="location"
                 type="text"
                 placeholder="Your city and country (ex: Paris, FRANCE)"
               />
-            </label>
-
+            </div>
+            <div className="form-group">
             <label>
               Picture:
-              <input
-                onChange={event => this.genericOnChange(event)}
+            </label>
+              <input className="form-control"
+                onChange={event => this.uploadOnChange(event)}
                 name="avatarURL"
                 type="file"
               />
-            </label>
-
+            </div>
+            <div className="form-group">
             <label>
               Description:
-              <input
+            </label>
+              <input className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.description}
                 name="description"
                 type="text"
                 placeholder="#geek #photography #tennis #TeamDog"
               />
-            </label>
-
-            <button>Save</button>
+</div>
+            <button type="submit" className="btn btn-success">Save</button>
           </form>
         </div>
       </div>

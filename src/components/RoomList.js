@@ -5,14 +5,14 @@ class RoomList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorites: [] 
+      favorites: []
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.updateFavorites();
   }
-  
+
   favoriteClick(room) {
     console.log("ROOM FAVORITE", room.id);
 
@@ -40,7 +40,7 @@ class RoomList extends React.Component {
             // class "active" if you are in this current room :
             const active = this.props.roomId === room.id ? "active" : "";
             return (
-              <li key={room.id} className={"room " + active}>
+              <li key={room.id} className={"room" + active}>
                 <a onClick={() => this.props.subscribeToRoom(room.id)} href="#">
                   # {room.name}
                 </a>
@@ -59,39 +59,3 @@ class RoomList extends React.Component {
 }
 
 export default RoomList;
-
-/* 
-
-________________________
-
-ORIGINAL CODE : 
-chatkit.addUsersToRoom({
-  roomId: room.id,
-  userIds: ['alice', 'bob']
-})
-  .then(() => console.log('added'))
-  .catch(err => console.error(err))
-
-
-________________________
-
-
-
-
-
-  <a
-                    onClick={() =>
-                      this.props.chatkit
-                        .addUsersToRoom({
-                          roomId: room.id,
-                          userIds:currentUser
-                        })
-                        .then(() => console.log("added"))
-                        .catch(err => console.error(err))
-                    }
-                    href="#"
-                  >
-                    # {room.name}
-                  </a>
-                  
-                  */

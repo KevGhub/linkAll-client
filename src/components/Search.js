@@ -77,7 +77,7 @@ class Search extends Component {
                       <img
                         src={oneCountry.flag}
                         className="countryFlag"
-                        alt="countryflag"
+                        alt="country flag"
                       />
                       <h4>{oneCountry.name}</h4>
                       {/* <p>{oneCountry.capital}</p> */}

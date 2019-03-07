@@ -17,8 +17,8 @@ class CurrentChannelCat extends Component {
           const active = this.props.roomId === room.id ? "active" : "";
           return (
             <div key={room.id} className={"room " + active}>
-              <p>
-                {() => this.props.subscribeToRoom(room.id)} #{room.name}
+              <p onClick={() => this.props.subscribeToRoom(room.id)}>
+                #{room.name}
               </p>
             </div>
           );

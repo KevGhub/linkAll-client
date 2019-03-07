@@ -32,37 +32,40 @@ class LoginForm extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <HomePage />
+      <p>WELCOME, let's start to CHAT</p>
     ) : (
       <section className="LoginForm">
-        <h2>You are at few steps from joining the LinkAll community</h2>
-
         <form onSubmit={event => this.handleSubmit(event)}>
-          <img src={this.state.avatarURL} />
-
-          <label>
-            Email:
+          <div className="form-group">
+            <label>Email:</label>
             <input
+              className="form-control"
               onChange={event => this.genericOnChange(event)}
               value={this.state.email}
               name="email"
               type="email"
               placeholder="Your email address"
             />
-          </label>
+          </div>
 
-          <label>
-            Password:
+          <div className="form-group">
+            <label>Password:</label>
             <input
+              className="form-control"
               onChange={event => this.genericOnChange(event)}
               value={this.state.originalPassword}
               name="originalPassword"
               type="password"
               placeholder="Your password"
             />
-          </label>
+          </div>
 
-          <button onClick={() => this.props.onClickLog()} id="closeModal">
+          <button
+            type="submit"
+            className="btn btn-success"
+            onClick={() => this.props.onClickLog()}
+            id="closeModal"
+          >
             Log In
           </button>
         </form>
