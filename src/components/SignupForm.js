@@ -25,7 +25,16 @@ class SignupForm extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
+  
+  uploadOnChange(event) {
+      const { name, files } = event.target;
 
+      postFile(files).then(response => {
+        console.log("Upload File Info", response.data);
+        this.setState({ [name]: response.data.fileUrl });
+      });
+  }
+  
   handleSubmit(event) {
     event.preventDefault();
 
@@ -35,14 +44,7 @@ class SignupForm extends Component {
     });
   }
 
-  uploadOnChange(event) {
-    const { name, files } = event.target;
-
-    postFile(files).then(response => {
-      console.log("Upload File Info", response.data);
-      this.setState({ [name]: response.data.fileUrl });
-    });
-  }
+  
 
   render() {
     return (
@@ -176,24 +178,26 @@ class SignupForm extends Component {
                 name="avatarURL"
                 type="file"
               />
+              <img src={this.state.avatarURL} />
               </div>
               
             <div className="form-group">
             <label>
-                Description:
+                Describe yourself in #:
             </label>
               <input className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.description}
                 name="description"
                 type="text"
-                placeholder="#geek #photography #tennis #TeamDog"
+                placeholder="#geek #photography (up to 6)"
               />
             </div>
 
             <button type="submit"
-                className="btn btn-success"
-                onClick={() => this.props.onClickSign()}>Sign Up</button>
+                className="btn btn-success" 
+                onClick={() => this.props.onClickSign()}
+                data-dismiss="modal">Sign Up</button>
               
             
           </form>

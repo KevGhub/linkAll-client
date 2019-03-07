@@ -64,7 +64,7 @@ export function postFile(files) {
   // (the name "userFile" is the one the backend is expecting)
   uploadData.append("userFile", files[0]);
 
-  return backendApi.post("/api/single-upload", uploadData).catch(errorHandler);
+  return backendApi.post("/api/avatar-upload", uploadData).catch(errorHandler);
 }
 
 // AUTH ###################################################################
