@@ -176,4 +176,5 @@ git commit -m"add react prodiiuction files"
 git push heroku master
 
 
----- heroku run node bin/file-seed.js (for each seed file)
+---- and on terminal : 
+heroku run node bin/file-seed.js (for each seed file)
