@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./LoginForm.css";
 import { postLogin } from "../api";
 import { Redirect } from "react-router-dom";
+import HomePage from "./HomePage";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class LoginForm extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <Redirect to="/" />
+      <HomePage />
     ) : (
       <section className="LoginForm">
         <h2>You are at few steps from joining the LinkAll community</h2>
@@ -61,10 +62,9 @@ class LoginForm extends Component {
             />
           </label>
 
-            <button
-              onClick={() => this.props.onClickLog()}
-              id="closeModal"
-            >Log In</button>
+          <button onClick={() => this.props.onClickLog()} id="closeModal">
+            Log In
+          </button>
         </form>
       </section>
     );

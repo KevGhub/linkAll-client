@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RoomList from "./RoomList.js";
+// import RoomList from "./RoomList.js";
 
 class CurrentChannelCat extends Component {
   constructor(props) {

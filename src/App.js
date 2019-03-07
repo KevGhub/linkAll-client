@@ -74,7 +74,7 @@ class App extends Component {
 
     for (var i = 0; i < favorites.length; i++) {
 
-      if (favorites[i].countries == countries) {
+      if (favorites[i].countries === countries) {
         index = i;
         break;
       }
@@ -115,7 +115,7 @@ class App extends Component {
 
     for (var i = 0; i < favorites.length; i++) {
 
-      if (favorites[i].countries == countries) {
+      if (favorites[i].countries === countries) {
         return true;
       }
 

@@ -27,7 +27,7 @@ class AppMessenger extends React.Component {
     this.sendMessage = this.sendMessage.bind(this);
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
     this.getRooms = this.getRooms.bind(this);
-    // this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   componentDidMount() {
@@ -74,7 +74,7 @@ class AppMessenger extends React.Component {
       const room = response.data.RoomsCategories.find(oneCat => {
         return oneCat.roomName === params.roomName;
       });
-      console.log("hello -------",room)
+      console.log("hello -------", room);
       this.subscribeToRoom(room.chatkitId);
     });
   }
