@@ -26,7 +26,6 @@ class OnlineUser extends Component {
       .connect()
       .then(currentUser => {
         this.currentUser = currentUser;
-        // CREATE A COMPONENT FOR ONLINE CURRENT USER
         // console.log(this.currentUser.rooms[1].userIds);
         this.setState({ onlineUsers: this.currentUser.rooms[1].userIds });
       })
