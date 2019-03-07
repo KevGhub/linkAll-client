@@ -1,7 +1,35 @@
 import React from "react";
+import { patchFavorite, getFavorite } from "../api";
 
 class RoomList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favorites: [] 
+    };
+  }
+
+  componentDidMount () {
+    this.updateFavorites();
+  }
+  
+  favoriteClick(room) {
+    console.log("ROOM FAVORITE", room.id);
+
+    patchFavorite(room.id).then(() => {
+      this.updateFavorites();
+    });
+  }
+
+  updateFavorites() {
+    getFavorite().then(response => {
+      console.log("Favorite Array", response.data);
+      this.setState({ favorites: response.data });
+    });
+  }
+
   render() {
+    const { favorites } = this.state;
     // Room sort by order appear
     const orderedRooms = [...this.props.rooms].sort((a, b) => a.id - b.id);
     return (
@@ -16,6 +44,11 @@ class RoomList extends React.Component {
                 <a onClick={() => this.props.subscribeToRoom(room.id)} href="#">
                   # {room.name}
                 </a>
+                {favorites.includes(room.id) ? (
+                  <button className="bookmarked">Star</button>
+                ) : (
+                  <button onClick={() => this.favoriteClick(room)}>Star</button>
+                )}
               </li>
             );
           })}

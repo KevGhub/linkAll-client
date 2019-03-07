@@ -74,6 +74,7 @@ class AppMessenger extends React.Component {
       const room = response.data.RoomsCategories.find(oneCat => {
         return oneCat.roomName === params.roomName;
       });
+      console.log("hello -------",room)
       this.subscribeToRoom(room.chatkitId);
     });
   }
@@ -130,7 +131,7 @@ class AppMessenger extends React.Component {
     const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(
       /\s/g,
       "+"
-    )}&api_key=3fUr3O3KAnYiu437hFaSeaM1Aip5o5Mi`;
+    )}&api_key=${process.env.REACT_APP_GIPHY_API_KEY}`;
     axios
       .get(url)
       .then(response => {

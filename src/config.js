@@ -1,5 +1,4 @@
-const tokenUrl =
-  "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/2993d953-3ea4-49a1-a84c-3c35a9cb6cf4/token";
-const instanceLocator = "v1:us1:2993d953-3ea4-49a1-a84c-3c35a9cb6cf4";
+const tokenUrl = process.env.REACT_APP_CHATKIT_TOKEN_URL;
+const instanceLocator = process.env.REACT_APP_CHATKIT_INSTANCE_LOCATOR_URL;
 
 export { tokenUrl, instanceLocator };

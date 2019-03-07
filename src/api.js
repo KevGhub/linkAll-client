@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create an Axios object with pre-configurate setting
 const backendApi = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: process.env.REACT_APP_BACKEND_URL,
   withCredentials: true
 });
 // POUR TOI DELPHINE
@@ -73,4 +73,12 @@ export function postLogin(loginCredentials) {
 
 export function getLogOut() {
   return backendApi.get("/api/logout").catch(errorHandler);
+}
+
+export function patchFavorite(roomId) {
+  return backendApi.patch("/api/account/favorite", { roomId }).catch(errorHandler);
+}
+
+export function getFavorite() {
+  return backendApi.get("/api/account/favorite").catch(errorHandler);
 }

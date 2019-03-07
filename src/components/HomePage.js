@@ -4,9 +4,24 @@ import "./HomePage.css";
 import Search from "./Search";
 import SignupForm from "./SignupForm";
 import LoginForm from "./LoginForm";
-
+import CountryFavList from "./CountryFavList";
+import { getCountries } from "../api.js";
 class HomePage extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      countryArray: []
+    };
+  }
+
+  componentDidMount() {
+
+    getCountries().then(response => {
+      console.log("Countries", response.data);
+      this.setState({ countryArray: response.data });
+    });
+  }
+
 
   render() {
     return (
@@ -23,11 +38,15 @@ class HomePage extends Component {
             currentUser={this.props.currentUser}
             loginSuccess={this.props.loginSuccess}
           />
-
-          <section>
-            <Search />
-          </section>
         </section>
+
+        <section className="SearchChannel">
+          <Search />
+        </section>
+        {/* <section className="FavListing">
+          <CountryFavList
+            favListImport={this.props.favListImport}/>
+        </section> */}
       </div>
     );
   }

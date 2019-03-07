@@ -23,7 +23,8 @@ class App extends Component {
       userInfo = JSON.parse(userInfo);
     }
     this.state = {
-      currentUser: userInfo
+      currentUser: userInfo,
+      // favorites: []
     };
   }
 
@@ -34,12 +35,74 @@ class App extends Component {
       //save the user info in localstorage if he's log in
       //(turn it into JSON string before saving)
       localStorage.setItem("currentUser", JSON.stringify(newUser));
+      
     } else {
       // delete the user info fron localStorage if he's log out
       localStorage.removeItem("currentUser");
     }
 
     this.setState({ currentUser: newUser });
+  }
+
+
+  addToFavorites(countries) {
+
+    var favorites = this.state.favorites;
+
+    favorites.push({
+      countries: countries,
+      timestamp: Date.now()
+    });
+
+    this.setState({
+      favorites: favorites
+    });
+
+    localStorage.favorites = JSON.stringify(favorites);
+  }
+
+  removeFromFavorites(countries) {
+
+    var favorites = this.state.favorites;
+    var index = -1;
+
+    for (var i = 0; i < favorites.length; i++) {
+
+      if (favorites[i].countries == countries) {
+        index = i;
+        break;
+      }
+
+    }
+
+    // If it was found, remove it from the favorites array
+
+    if (index !== -1) {
+
+      favorites.splice(index, 1);
+
+      this.setState({
+        favorites: favorites
+      });
+
+      localStorage.favorites = JSON.stringify(favorites);
+    }
+
+  }
+
+  isCountryInFavorites(countries) {
+
+    var favorites = this.state.favorites;
+
+    for (var i = 0; i < favorites.length; i++) {
+
+      if (favorites[i].countries == countries) {
+        return true;
+      }
+
+    }
+
+    return false;
   }
 
   LogoutClick() {
@@ -95,7 +158,7 @@ class App extends Component {
         </header>
 
         <Switch>
-          {/* <Route exact path="/" component={HomePage}/> */}
+          
           <Route
             exact
             path="/"
@@ -105,6 +168,8 @@ class App extends Component {
                   currentUser={this.state.currentUser}
                   signupSuccess={user => this.updateUser(user)}
                   loginSuccess={user => this.updateUser(user)}
+                  favListImport={() => this.favInitialState()}
+                  toggleFav={() => this.toggleFavorite()}
                 />
               );
             }}
@@ -118,6 +183,8 @@ class App extends Component {
                   currentUser={this.state.currentUser}
                   editSuccess={user => this.updateUser(user)}
                   deleteSuccess={user => this.updateUser(user)}
+                  favListImport={() => this.favInitialState()}
+                  toggleFav={() => this.toggleFavorite()}
                   match={props.match}
                 />
               );

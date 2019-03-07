@@ -5,6 +5,7 @@ import "../userDefault.svg";
 import { getUserDetails } from "../api";
 import ButtonUserProfile from "./ButtonUserProfile";
 import { getCountries } from "../api.js";
+import CountryFavList from "./CountryFavList";
 
 class UserAccount extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class UserAccount extends Component {
 
   render() {
     const { userInfo } = this.state;
+    console.log(this.state);
  
 
     return this.state.isDeleteOpen ? (
@@ -54,11 +56,10 @@ class UserAccount extends Component {
               <b>{userInfo.email}</b>
             </li>
             <li className="User-info">
-              <b>{userInfo.location}</b>
-              <p>
-                <i>{userInfo.age}</i>
-                <i>{userInfo.gender}</i>
-              </p>
+                <p>From : <b>{userInfo.location}</b></p>
+                <p><i>{userInfo.age}</i> years old</p>
+                <p><i>{userInfo.gender}</i></p>  
+              
               <p>{userInfo.description}</p>
             </li>
           </ul>
@@ -97,13 +98,25 @@ class UserAccount extends Component {
                 </div>
               );  
             }}
-          />
-          />
-        </Switch>
-        <section className="Fav-channels">
-          <h2>Favorites Channels</h2>
+            />
+            
+            <Route
+              path="/account/:userName"
+              render={() => {
+                return (
+                  <section className="Fav-channels">
+                    <h2>Favorites Channels</h2>
+                    <CountryFavList
+                      favListImport={this.props.favListImport}
+                      countryArray={this.state.countryArray}
+                    />
+                  </section>
+                );
+              }}
+            />
           
-        </section>
+        </Switch>
+        
 
       </div>
     );
