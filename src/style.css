@@ -9,7 +9,6 @@
 
 html,
 body {
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: system-ui;
@@ -26,18 +25,16 @@ body {
   height: 100%;
 
   /* 1fr = 1 fraction unit  for Css GRID -> 6 columns for each same 1 fr  */
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 
   /* 1fr = 1 fraction unit  for Css GRID -> 5 rows for each same 1 fr  */
 
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 60px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 60px;
   grid-template-areas:
-    "u r r r r r"
+    "r r r r r r"
     "c m m m m m"
     "o m m m m m"
-    "o m m m m m"
-    "o m m m m m"
-    "n s s g g g";
+    "u s s s s g";
 }
 
 .new-room-form {
@@ -188,6 +185,7 @@ body {
 .send-message-form {
   background: var(--send-message-form);
   display: flex;
+  height: 80px;
 }
 
 .send-message-form input {
@@ -211,3 +209,66 @@ body {
   position: absolute;
   top: 10px;
 }
+
+
+.gif-item {
+    box-shadow: 2px 2px 4px 0 #ccc;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0 0 1.5em;
+    padding: 1em;
+    width: 100%;
+}
+
+.gif-item img {
+    width: 100%;
+}
+
+.gif-list {
+    column-gap: 1.5em;
+    font-size: .85em;
+    margin: 1.5em 0;
+    padding: 0;
+}
+
+.SearchBarInput {
+    display: block;
+    font-size: 22px;
+    height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+}
+
+@media only screen and (min-width: 400px) {
+    .gif-list {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .gif-list {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .gif-list {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .gif-list {
+        -moz-column-count: 5;
+        -webkit-column-count: 5;
+        column-count: 5;
+    }
+}
+

@@ -57,6 +57,16 @@ export function postUserDelete(deletedUser) {
     .catch(errorHandler);
 }
 
+export function postFile(files) {
+  // create a FormData object that packages up the file for uploading
+  const uploadData = new FormData();
+  // add the first file to the uploadData "package"
+  // (the name "userFile" is the one the backend is expecting)
+  uploadData.append("userFile", files[0]);
+
+  return backendApi.post("/api/single-upload", uploadData).catch(errorHandler);
+}
+
 // AUTH ###################################################################
 //-------------------------------------------------------------------------
 export function postSignUp(userSubmission) {
@@ -82,3 +92,4 @@ export function patchFavorite(roomId) {
 export function getFavorite() {
   return backendApi.get("/api/account/favorite").catch(errorHandler);
 }
+

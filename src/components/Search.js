@@ -75,7 +75,7 @@ class Search extends Component {
               return (
                 <li className="oneCountry col-lg-4 col-md-6 col-sm-12 w-100" key={oneCountry._id}>
                   <div className="li-content">
-                  <img src={oneCountry.flag} className="countryFlag" />
+                  <img src={oneCountry.flag} className="countryFlag" alt="country flag" />
                   <h4>{oneCountry.name}</h4>
                   {/* <p>{oneCountry.capital}</p> */}
 <div className="iconList d-flex justify-content-center">

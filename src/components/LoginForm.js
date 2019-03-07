@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./LoginForm.css";
 import { postLogin } from "../api";
 import { Redirect } from "react-router-dom";
+import HomePage from "./HomePage";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -31,37 +32,38 @@ class LoginForm extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <Redirect to="/" />
+     <p>WELCOME, let's start to CHAT</p>
     ) : (
       <section className="LoginForm">
-        <h2>You are at few steps from joining the LinkAll community</h2>
-
         <form onSubmit={event => this.handleSubmit(event)}>
-          <img src={this.state.avatarURL} />
-
+          
+            <div className="form-group">
           <label>
-            Email:
-            <input
+              Email:
+          </label>
+              <input className="form-control"
               onChange={event => this.genericOnChange(event)}
               value={this.state.email}
               name="email"
               type="email"
               placeholder="Your email address"
             />
-          </label>
-
+            </div>
+            
+           <div className="form-group">
           <label>
-            Password:
-            <input
+              Password:
+          </label>
+              <input className="form-control"
               onChange={event => this.genericOnChange(event)}
               value={this.state.originalPassword}
               name="originalPassword"
               type="password"
               placeholder="Your password"
             />
-          </label>
-
-            <button
+            </div>
+            
+            <button type="submit" className="btn btn-success"
               onClick={() => this.props.onClickLog()}
               id="closeModal"
             >Log In</button>

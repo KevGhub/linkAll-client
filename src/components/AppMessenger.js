@@ -22,12 +22,14 @@ class AppMessenger extends React.Component {
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
-      gifs: []
+      gifs: [],
+      selectedGif: null,
+      modalIsOpen: false
     };
     this.sendMessage = this.sendMessage.bind(this);
     this.subscribeToRoom = this.subscribeToRoom.bind(this);
     this.getRooms = this.getRooms.bind(this);
-    // this.handleTermChange = this.handleTermChange.bind(this);
+    this.handleTermChange = this.handleTermChange.bind(this);
   }
 
   componentDidMount() {
@@ -140,20 +142,36 @@ class AppMessenger extends React.Component {
       .catch(err => console.log("error on giphy", err));
   }
 
+  openModal(gif) {
+    this.setState({
+      modalIsOpen: true,
+      selectedGif: gif
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modalIsOpen: false,
+      selectedGif: null
+    });
+  }
+  
   render() {
     return (
       <div className="AppMessenger">
-        <Search />
-        <div className="Gif-search">
-          <SearchBar onTermChange={this.handleTermChange} />
-          <GifList gifs={this.state.gifs} />
-        </div>
-        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
+        {/* <Search /> */}
+
         <RoomList
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinedRooms]}
           roomId={this.state.roomId}
         />
+
+        <div className="Gif-search">
+          <SearchBar onTermChange={this.handleTermChange} />
+          <GifList gifs={this.state.gifs} />
+        </div>
+        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
         <CurrentChannelCat rooms={[...this.state.joinedRooms]} />
 
         <OnlineUser />
@@ -164,7 +182,7 @@ class AppMessenger extends React.Component {
         <SendMessageForm
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
-        />
+          />
 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
       </div>
