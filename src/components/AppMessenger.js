@@ -12,6 +12,7 @@ import axios from "axios";
 import { tokenUrl, instanceLocator } from "../config.js";
 import { getCountryDetails } from "../api";
 import CurrentChannelCat from "./CurrentChannelCat.js";
+import GifModal from "./GifModal";
 
 class AppMessenger extends React.Component {
   constructor(props) {
@@ -155,7 +156,7 @@ class AppMessenger extends React.Component {
       selectedGif: null
     });
   }
-  
+
   render() {
     return (
       <div className="AppMessenger">
@@ -167,11 +168,8 @@ class AppMessenger extends React.Component {
           roomId={this.state.roomId}
         />
 
-        <div className="Gif-search">
-          <SearchBar onTermChange={this.handleTermChange} />
-          <GifList gifs={this.state.gifs} />
-        </div>
-        {/* <SearchUser user={this.props.userInfo} /> // for user search bar from searchUser.js*/}
+        
+        
         <CurrentChannelCat rooms={[...this.state.joinedRooms]} />
 
         <OnlineUser />
@@ -182,7 +180,16 @@ class AppMessenger extends React.Component {
         <SendMessageForm
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
-          />
+        />
+        
+        <div className="Gif-search">
+          <SearchBar onTermChange={this.handleTermChange} />
+          <GifList gifs={this.state.gifs}
+            onGifSelect={selectedGif => this.openModal(selectedGif)} />
+          <GifModal modalIsOpen={this.state.modalIsOpen}
+            selectedGif={this.state.selectedGif}
+            onRequestClose={() => this.closeModal()} />
+        </div>
 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
       </div>
