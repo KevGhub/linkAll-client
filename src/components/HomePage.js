@@ -2,10 +2,12 @@ import React, { Component } from "react";
 
 import "./HomePage.css";
 import Search from "./Search";
-import SignupForm from "./SignupForm";
-import LoginForm from "./LoginForm";
+
 import CountryFavList from "./CountryFavList";
 import { getCountries } from "../api.js";
+
+import search from "../images/searchIcon.svg"
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -25,29 +27,17 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="HomePage">
-        <section>
-          <h1>Link'All </h1>
-          <h2>Welcome to Link'All ! Your favorite Chat country.</h2>
-
-          <SignupForm
-            currentUser={this.props.currentUser}
-            signupSuccess={this.props.signupSuccess}
-          />
-          <LoginForm
-            currentUser={this.props.currentUser}
-            loginSuccess={this.props.loginSuccess}
-          />
-        </section>
-
-        <section className="SearchChannel">
+      <section className="HomePage container d-flex align-items-center justify-content-center">
+        
+        <div className="row w-100">
+          <div className="col-12 m-auto text-center">
+            <img src={search} alt="" className="imgHome"/>
+          <h6 className="text-uppercase text-small letter-space">Welcome to Link'All ! Your favorite Chat country.</h6>
+      
           <Search />
-        </section>
-        {/* <section className="FavListing">
-          <CountryFavList
-            favListImport={this.props.favListImport}/>
-        </section> */}
-      </div>
+           </div>
+        </div>{/*  end row */}
+      </section>
     );
   }
 }

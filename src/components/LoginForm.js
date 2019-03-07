@@ -31,7 +31,7 @@ class LoginForm extends Component {
 
   render() {
     return this.props.currentUser ? (
-      <Redirect to="/countries" />
+      <Redirect to="/" />
     ) : (
       <section className="LoginForm">
         <h2>You are at few steps from joining the LinkAll community</h2>
@@ -61,7 +61,10 @@ class LoginForm extends Component {
             />
           </label>
 
-          <button>Log In</button>
+            <button
+              onClick={() => this.props.onClickLog()}
+              id="closeModal"
+            >Log In</button>
         </form>
       </section>
     );

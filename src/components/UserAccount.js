@@ -106,10 +106,10 @@ class UserAccount extends Component {
                 return (
                   <section className="Fav-channels">
                     <h2>Favorites Channels</h2>
-                    <CountryFavList
+                    {/* <CountryFavList
                       favListImport={this.props.favListImport}
                       countryArray={this.state.countryArray}
-                    />
+                    /> */}
                   </section>
                 );
               }}

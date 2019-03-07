@@ -3,9 +3,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 // import chatkit from "@pusher/chatkit";
-
+import icon1 from "../images/icon-1.svg";
+import icon2 from "../images/icon-2.svg";
+import icon3 from "../images/icon-3.svg";
+import icon4 from "../images/icon-4.svg";
 import { getCountries } from "../api.js";
 
+import "./Search.css";
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -48,30 +52,35 @@ class Search extends Component {
 
     return (
       <section className="searchResult">
-        <h2>Search</h2>
-
+        
         <form onSubmit={event => this.handleSubmit(event)}>
           <input
             onChange={event => this.genericOnChange(event)}
             value={this.state.oneCountry}
             name="countrySearch"
             type="text"
-            className="search-bar"
-            placeholder="Search a Country or a friend"
+            className="search-bar text-center w-100"
+            placeholder="Search for a country"
+            autoComplete="off"
           />
         </form>
-        {countrySearch === "" ? null : (
-          <ul>
+
+        {countrySearch === "" ?
+         null
+          :
+          (
+          <div className="countryList container">
+          <ul className="row d-flex justify-content-center">
             {filteredArray.map(oneCountry => {
               return (
-                <li key={oneCountry._id}>
-                  <h3>{oneCountry.name}</h3>
-                  <p>{oneCountry.capital}</p>
-                  <img src={oneCountry.flag} />
-
+                <li className="oneCountry col-lg-4 col-md-6 col-sm-12 w-100" key={oneCountry._id}>
+                  <div className="li-content">
+                  <img src={oneCountry.flag} className="countryFlag" />
+                  <h4>{oneCountry.name}</h4>
+                  {/* <p>{oneCountry.capital}</p> */}
+<div className="iconList d-flex justify-content-center">
                   {oneCountry.RoomsCategories.map(oneRoomCategory => {
                     return (
-                      <div>
 
                       <Link
                         key={oneRoomCategory._id}
@@ -79,16 +88,27 @@ class Search extends Component {
                           oneRoomCategory.roomName
                         }`}
                         >
-                        <h4>{oneRoomCategory.roomName}</h4>
+                          {oneRoomCategory.roomName === "Travel in" ?
+                            <img src={icon1} alt="" className="icons"/>
+                            :
+                            oneRoomCategory.roomName === "Fooding" ?
+                              <img src={icon4} alt="" className="icons"/>
+                              :
+                              oneRoomCategory.roomName === "Culture & language" ?
+                                <img src={icon3} alt="" className="icons" />
+                                :
+                                <img src={icon2} alt="" className="icons"/>
+                          }
                         </Link>
-                        <button>add to BookMarKS</button>
-                        </div>
                     );
                   })}
+                    </div>
+                  </div>
                 </li>
               );
             })}
-          </ul>
+            </ul>
+            </div>
         )}
       </section>
     );

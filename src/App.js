@@ -9,6 +9,12 @@ import { getLogOut } from "./api";
 import { postUserDelete } from "./api";
 import UserAccount from "./components/UserAccount";
 import AppMessenger from "./components/AppMessenger.js";
+import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
+import $ from 'jquery';
+
+
+
 
 function getUseraddress(user) {
   return `/account/${user.name}`;
@@ -90,6 +96,19 @@ class App extends Component {
 
   }
 
+  onClickLog() {
+    $('#closeModal').click(function () {
+      $('#exampleModal').modal('hide')
+    });
+  }
+
+  onClickSign() {
+    $('#closeModal').click(function () {
+      $('#exampleModal2').modal('hide')
+    });
+  }
+
+
   isCountryInFavorites(countries) {
 
     var favorites = this.state.favorites;
@@ -122,39 +141,87 @@ class App extends Component {
 
 
   render() {
+    
     return (
       <div className="App">
-        <header className="header">
-          <nav>
-            <NavLink exact to="/">
-              <img className="App-logo" src={logo} alt="logo" />
+        <header className="header w-100">
+          <nav className=" w-100 navbar navbar-light bg-light">
+            <NavLink className="navbar-brand" exact to="/">
+              <img className="App-logo" src={logo} alt="Country Chat logo" />
             </NavLink>
-
             {this.state.currentUser ? (
-              <span>
-                <div className="User-connected">
+              <div className="userLogged d-flex align-items-center">
+
+                <div className="User-out d-flex align-items-center">
+
+                  <p className="userName">  Welcome  <b>{this.state.currentUser.name}</b>
+                  </p>
+                  <button className="btn btn-outline-success my-2 my-sm-0 btnLogout" onClick={() => this.LogoutClick()}>Log Out</button>
                   <NavLink to={getUseraddress(this.state.currentUser)}>
-                    {this.state.currentUser.name}
                     <img
                       src={this.state.currentUser.avatarURL}
                       alt="User-Img"
+                      className="userImg"
                     />
                   </NavLink>
 
                   {/* component mp-notif */}
                 </div>
-                <div className="User-out">
-                  <button onClick={() => this.LogoutClick()}>Log Out</button>
-                </div>
-              </span>
+              </div>
             ) : (
-              <span>
-                <NavLink to="/">
-                  <button>Log In</button>
-                </NavLink>
-              </span>
-            )}
-          </nav>
+                
+                <div className ="buttons">
+                  <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal2">Sign up</button>
+                 
+                    <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">Log In</button>
+                 
+                </div>
+              )}
+
+            
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <LoginForm
+                      currentUser={this.state.currentUser}
+                      loginSuccess={user => this.updateUser(user)}
+                      onClickLog={() => this.onClickLog()}
+                    />
+      </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <SignupForm
+                      currentUser={this.state.currentUser}
+                      signupSuccess={user => this.updateUser(user)}
+                      onClickSign={() => this.onClickSign()}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</nav>
         </header>
 
         <Switch>
@@ -167,7 +234,7 @@ class App extends Component {
                 <HomePage
                   currentUser={this.state.currentUser}
                   signupSuccess={user => this.updateUser(user)}
-                  loginSuccess={user => this.updateUser(user)}
+                 
                   favListImport={() => this.favInitialState()}
                   toggleFav={() => this.toggleFavorite()}
                 />
