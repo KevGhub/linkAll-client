@@ -1,0 +1,54 @@
+.HomePage {
+    margin-top: 150px;
+}
+
+.letter-space {
+    letter-spacing: 3px;
+    font-size: 13px;
+    padding: 20px 0 10px 0;
+}
+
+.imgHome {
+    height: 80px;
+    object-fit: contain;
+}
+
+.countryFlag{
+    width: 50px;
+    margin-bottom: 20px;
+    height: 25px;
+    object-fit: contain;
+}
+
+.countryList{
+    margin-top: 50px
+}
+
+ul{
+    padding-inline-start: 0;
+    list-style-type: none;
+}
+
+.icons{
+    width: 40px;
+    margin: 0 5px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.oneCountry{
+    margin-bottom: 50px;
+}
+
+.li-content{
+    border-radius: 6px;
+    box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.1);
+    height: 250px;
+    padding: 20px;
+    background-color: white;
+    min-width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

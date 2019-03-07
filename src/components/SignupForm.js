@@ -165,7 +165,8 @@ class SignupForm extends Component {
               />
             </label>
 
-            <button>Sign Up</button>
+            <button
+              onClick={() => this.props.onClickSign()}>Sign Up</button>
           </form>
         </div>
       </section>

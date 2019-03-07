@@ -1,1 +1,15 @@
-<?xml version="1.0" ?><svg style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Icons"><g id="Icons_18_"><linearGradient gradientTransform="matrix(1 0 0 -1 0 -182)" gradientUnits="userSpaceOnUse" id="SVGID_1_" x1="24" x2="24" y1="-211.08972" y2="-190.52008"><stop offset="0.09694" style="stop-color:#FFD879"/><stop offset="0.15387" style="stop-color:#FCCB76"/><stop offset="0.25828" style="stop-color:#F5AA6C"/><stop offset="0.39756" style="stop-color:#E9755E"/><stop offset="0.44898" style="stop-color:#E45F58"/><stop offset="0.67857" style="stop-color:#D22A9C"/><stop offset="1" style="stop-color:#6968DF"/></linearGradient><circle cx="23.99998" cy="18.98322" r="7.26355" style="fill:url(#SVGID_1_);"/><linearGradient gradientTransform="matrix(1 0 0 -1 0 -182)" gradientUnits="userSpaceOnUse" id="SVGID_2_" x1="24" x2="24" y1="-220.83018" y2="-205.15492"><stop offset="0.09694" style="stop-color:#FFD879"/><stop offset="0.15387" style="stop-color:#FCCB76"/><stop offset="0.25828" style="stop-color:#F5AA6C"/><stop offset="0.39756" style="stop-color:#E9755E"/><stop offset="0.44898" style="stop-color:#E45F58"/><stop offset="0.67857" style="stop-color:#D22A9C"/><stop offset="1" style="stop-color:#6968DF"/></linearGradient><path d="M36.45825,35.9458c0-3.8895-3.1825-7.0721-7.0722-7.0721h-10.7722    c-3.8897,0-7.0721,3.1826-7.0721,7.0721v0.3345h24.9165V35.9458z" style="fill:url(#SVGID_2_);"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 595.3 841.9" enable-background="new 0 0 595.3 841.9" xml:space="preserve">
+<g id="info">
+</g>
+<g id="icons">
+	<g id="user">
+		<ellipse fill="#7986CB" cx="297.6" cy="321.7" rx="124" ry="148.8"/>
+		<path fill="#7986CB" d="M540.7,597c-22.3-44.6-64.5-81.9-119.1-104.2c-14.9-5-32.2-5-44.6,2.5c-24.8,14.9-49.6,22.3-79.4,22.3
+			c-29.8,0-54.6-7.4-79.4-22.3c-12.4-5-29.8-7.4-44.6,0c-54.6,22.3-96.7,59.5-119.1,104.2c-17.4,32.2,9.9,69.4,47.1,69.4h391.9
+			C530.8,669,558.1,631.8,540.7,597z"/>
+	</g>
+</g>
+</svg>
