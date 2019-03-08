@@ -7,7 +7,7 @@ const GifList = (props) => {
    
     console.log("please......", gifs)
     const gifItems = gifs
-        .slice((gifs), 9)
+        // .slice((gifs), 9)
         .map((image) => {
         return <GifItem 
         key={image.id} 

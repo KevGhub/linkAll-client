@@ -12,7 +12,7 @@ const GifModal = (props) => {
             <div className="gif-modal">
                 <img src={props.selectedGif.images.original.url} />
                 <button
-                    onClick={() => props.onRequestClose()}>close</button>
+                    onClick={() => props.onRequestClose(props.selectedGif.images.original.url)}>close</button>
             </div>
         </Modal>
     );

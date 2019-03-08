@@ -8,11 +8,22 @@ import OnlineUser from "./onlineUser.js";
 import SearchBar from "./SearchBar";
 import GifList from "./GifList";
 import axios from "axios";
+import Modal from 'react-modal';
 
 import { tokenUrl, instanceLocator } from "../config.js";
 import { getCountryDetails } from "../api";
 import CurrentChannelCat from "./CurrentChannelCat.js";
 import GifModal from "./GifModal";
+
+// function helpModal({ isOpen, closeModal }) {
+//   return (
+//     <Modal isOpen={isOpen} onRequestClose={closeModal}>
+//       'modal content'
+//     </Modal>
+//   );
+// }
+
+// Modal.setAppElement('#app-base');
 
 class AppMessenger extends React.Component {
   constructor(props) {
@@ -53,6 +64,8 @@ class AppMessenger extends React.Component {
         this.updateCountryState();
       })
       .catch(err => console.log("error on connecting: ", err));
+    
+
   }
 
   componentDidUpdate(oldProps) {
@@ -150,10 +163,10 @@ class AppMessenger extends React.Component {
     });
   }
 
-  closeModal() {
+  closeModal(url) {
     this.setState({
       modalIsOpen: false,
-      selectedGif: null
+      selectedGif: url
     });
   }
 
@@ -180,6 +193,7 @@ class AppMessenger extends React.Component {
         <SendMessageForm
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
+          selectedGif={this.state.selectedGif}
         />
         
         <div className="Gif-search">
@@ -188,7 +202,8 @@ class AppMessenger extends React.Component {
             onGifSelect={selectedGif => this.openModal(selectedGif)} />
           <GifModal modalIsOpen={this.state.modalIsOpen}
             selectedGif={this.state.selectedGif}
-            onRequestClose={() => this.closeModal()} />
+            // modelHelp={event => this.state.helpModal(event)}
+            onRequestClose={url => this.closeModal(url)} />
         </div>
 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}

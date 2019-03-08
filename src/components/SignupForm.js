@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import "./SignupForm.css";
 import { postSignUp, postFile } from "../api.js";
@@ -47,7 +47,12 @@ class SignupForm extends Component {
   
 
   render() {
-    return (
+    return this.props.currentUser ? (
+      <Fragment>
+      <p>GREAT, you are logged. Let chat !</p>
+        <img className="img-thumbnail rounded mx-auto d-block" src="https://media.giphy.com/media/kOZ5BWKm2tMGs/giphy.gif" alt="sign up okay" />
+      </Fragment>
+    ) : (
       <section className="SignupForm">
         <div>
           <h2>Sign Up</h2>
@@ -178,7 +183,7 @@ class SignupForm extends Component {
                 name="avatarURL"
                 type="file"
               />
-              <img src={this.state.avatarURL} />
+                <img className="img-thumbnail rounded mx-auto d-block" src={this.state.avatarURL} />
               </div>
               
             <div className="form-group">
@@ -197,7 +202,7 @@ class SignupForm extends Component {
             <button type="submit"
                 className="btn btn-success" 
                 onClick={() => this.props.onClickSign()}
-                data-dismiss="modal">Sign Up</button>
+                >Sign Up</button>
               
             
           </form>
