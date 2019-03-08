@@ -46,7 +46,7 @@ class UserAccount extends Component {
     )
     :
     (
-      <div className="UserAccount">
+      <div className="UserAccount  w-100">
           <section className="User-profile">
             
             <img src={bgScreen} alt="" className="bgScreen"/>

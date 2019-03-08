@@ -104,7 +104,7 @@ class AppMessenger extends React.Component {
         // messageLimit: 100,
         hooks: {
           onMessage: message => {
-            console.log("hello)-------", message)
+            console.log("hello)-------", message);
             this.setState({
               messages: [...this.state.messages, message]
             });
@@ -134,16 +134,18 @@ class AppMessenger extends React.Component {
       return;
     }
 
-    this.currentUser.sendMultipartMessage({
-      roomId: this.state.roomId,
-      parts: [
-        { type: "text/plain", content: text },
-        {
-          type: "image/gif",
-          url: this.state.selectedGifUrl,
-        },
-      ] 
-    }).then(() => this.setState({ selectedGifUrl: "" }));
+    this.currentUser
+      .sendMultipartMessage({
+        roomId: this.state.roomId,
+        parts: [
+          { type: "text/plain", content: text },
+          {
+            type: "image/gif",
+            url: this.state.selectedGifUrl
+          }
+        ]
+      })
+      .then(() => this.setState({ selectedGifUrl: "" }));
   }
 
   // GIF RELATED----------------------------
@@ -182,7 +184,7 @@ class AppMessenger extends React.Component {
     }
 
     return (
-      <div className={classList}>
+      <div className="AppMessenger w-100">
         {/* <Search /> */}
 
         <RoomList
