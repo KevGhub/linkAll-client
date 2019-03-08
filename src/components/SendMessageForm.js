@@ -5,7 +5,9 @@ class SendMessageForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      message: ""
+      message: "",
+      selectedGif: ""
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,7 +15,9 @@ class SendMessageForm extends React.Component {
 
   handleChange(event) {
     this.setState({
-      message: event.target.value
+      message: event.target.value,
+      // selectedGif: event.target.req.body
+
     });
   }
 
@@ -21,14 +25,24 @@ class SendMessageForm extends React.Component {
     event.preventDefault();
     this.props.sendMessage(this.state.message);
     this.setState({
-      message: ""
+      message: "",
+      
+      
     });
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="send-message-form">
-        {this.props.selectedGif && <img src={this.props.selectedGif} />}
+        {/* <input
+          disabled={this.props.disabled} // Empeche d'écrire avant de rejoindre une Room
+          onChange={this.handleChange}
+          value={this.state.message}
+          placeholder="Send gif hit ENTER"
+          type="file"
+        > */}
+          {this.props.selectedGif && <img src={this.props.selectedGif} />}
+        
         <input
           disabled={this.props.disabled} // Empeche d'écrire avant de rejoindre une Room
           onChange={this.handleChange}

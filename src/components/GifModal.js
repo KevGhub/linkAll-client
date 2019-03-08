@@ -5,14 +5,19 @@ const GifModal = (props) => {
     if (!props.selectedGif) {
         return <div></div>;
     }
+
+    console.log("hjbhjbjknjknnjnkklk,k" , props);
+    
     return (
         <Modal
             isOpen={props.modalIsOpen}
             onRequestClose={() => props.onRequestClose()}>
             <div className="gif-modal">
-                <img src={props.selectedGif.images.original.url} />
+                {/* <img src={props.selectedGif.images.downsized.url} /> */}
                 <button
-                    onClick={() => props.onRequestClose(props.selectedGif.images.original.url)}>close</button>
+                    onClick={() => {
+                        console.log("AAAAAAAAAAAAAAAAAA", props.selectedGif.images.downsized.url );
+                     return props.onRequestClose(props.selectedGif.images.downsized.url)}}>Send</button>
             </div>
         </Modal>
     );

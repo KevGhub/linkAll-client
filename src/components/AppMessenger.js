@@ -15,15 +15,6 @@ import { getCountryDetails } from "../api";
 import CurrentChannelCat from "./CurrentChannelCat.js";
 import GifModal from "./GifModal";
 
-// function helpModal({ isOpen, closeModal }) {
-//   return (
-//     <Modal isOpen={isOpen} onRequestClose={closeModal}>
-//       'modal content'
-//     </Modal>
-//   );
-// }
-
-// Modal.setAppElement('#app-base');
 
 class AppMessenger extends React.Component {
   constructor(props) {
@@ -35,7 +26,7 @@ class AppMessenger extends React.Component {
       joinableRooms: [],
       joinedRooms: [],
       gifs: [],
-      selectedGif: null,
+      selectedGif: "",
       modalIsOpen: false
     };
     this.sendMessage = this.sendMessage.bind(this);
@@ -135,9 +126,10 @@ class AppMessenger extends React.Component {
       .catch(err => console.log("error on subscribing to room", err));
   }
 
-  sendMessage(text) {
+  sendMessage(text, selectedGif) {
     this.currentUser.sendMessage({
       text,
+      selectedGif,
       roomId: this.state.roomId
     });
   }
@@ -202,7 +194,6 @@ class AppMessenger extends React.Component {
             onGifSelect={selectedGif => this.openModal(selectedGif)} />
           <GifModal modalIsOpen={this.state.modalIsOpen}
             selectedGif={this.state.selectedGif}
-            // modelHelp={event => this.state.helpModal(event)}
             onRequestClose={url => this.closeModal(url)} />
         </div>
 
