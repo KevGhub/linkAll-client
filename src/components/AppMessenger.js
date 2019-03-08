@@ -15,7 +15,6 @@ import { getCountryDetails } from "../api";
 import CurrentChannelCat from "./CurrentChannelCat.js";
 import GifModal from "./GifModal";
 
-
 class AppMessenger extends React.Component {
   constructor(props) {
     super(props);
