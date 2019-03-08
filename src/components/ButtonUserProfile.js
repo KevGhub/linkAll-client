@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./ButtonUserProfile.css";
 import { postUserEditDetails, postFile } from "../api";
 
+
 class ButtonUserProfile extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +83,7 @@ class ButtonUserProfile extends Component {
               <label>
                 Picture:
             </label>
-              <img className="img-thumbnail rounded" src={this.state.avatarURL} />
+              <img className="img-thumbnail rounded upImg" src={this.state.avatarURL} />
               <input className="form-control"
                 onChange={event => this.uploadOnChange(event)}
                 name="avatarURL"

@@ -7,6 +7,7 @@ import ButtonUserProfile from "./ButtonUserProfile";
 import { getCountries } from "../api.js";
 import CountryFavList from "./CountryFavList";
 
+import bgbgScreen from "../images/bgbg.svg"
 import bgScreen from "../images/bg-screen.jpg"
 class UserAccount extends Component {
   constructor(props) {
@@ -89,9 +90,9 @@ class UserAccount extends Component {
                     path="/account/:userName/delete"
                     render={() => {
                       return (
-                        <div className="verif-delete">
+                        <div className="verif-delete text-center">
                           <h2>To confirm press the delete button</h2>
-                          <button onClick={(deleteUser) => this.props.deleteSuccess(deleteUser)}>Delete</button>
+                          <button className="btn btn-dark" onClick={(deleteUser) => this.props.deleteSuccess(deleteUser)}>Delete</button>
                         </div>
                       );
                     }}
@@ -102,11 +103,8 @@ class UserAccount extends Component {
                     render={() => {
                       return (
                         <section className="Fav-channels">
-                          <h2>Favorites Channels</h2>
-                          {/* <CountryFavList
-                      favListImport={this.props.favListImport}
-                      countryArray={this.state.countryArray}
-                    /> */}
+                          
+                          <img src={bgbgScreen} alt="bg" className="w-100"/>
                         </section>
                       );
                     }}
