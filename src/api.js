@@ -5,7 +5,7 @@ const backendApi = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   withCredentials: true
 });
-// POUR TOI DELPHINE
+
 // ERROR HANDLER ###################################################################
 //----------------------------------------------------------------------------------
 
@@ -86,10 +86,11 @@ export function getLogOut() {
 }
 
 export function patchFavorite(roomId) {
-  return backendApi.patch("/api/account/favorite", { roomId }).catch(errorHandler);
+  return backendApi
+    .patch("/api/account/favorite", { roomId })
+    .catch(errorHandler);
 }
 
 export function getFavorite() {
   return backendApi.get("/api/account/favorite").catch(errorHandler);
 }
-

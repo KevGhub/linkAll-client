@@ -25,16 +25,16 @@ class SignupForm extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
-  
-  uploadOnChange(event) {
-      const { name, files } = event.target;
 
-      postFile(files).then(response => {
-        console.log("Upload File Info", response.data);
-        this.setState({ [name]: response.data.fileUrl });
-      });
+  uploadOnChange(event) {
+    const { name, files } = event.target;
+
+    postFile(files).then(response => {
+      console.log("Upload File Info", response.data);
+      this.setState({ [name]: response.data.fileUrl });
+    });
   }
-  
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -44,13 +44,15 @@ class SignupForm extends Component {
     });
   }
 
-  
-
   render() {
     return this.props.currentUser ? (
       <Fragment>
-      <p>GREAT, you are logged. Let chat !</p>
-        <img className="img-thumbnail rounded mx-auto d-block" src="https://media.giphy.com/media/kOZ5BWKm2tMGs/giphy.gif" alt="sign up okay" />
+        <p>GREAT, you are logged. Let chat !</p>
+        <img
+          className="img-thumbnail rounded mx-auto d-block"
+          src="https://media.giphy.com/media/kOZ5BWKm2tMGs/giphy.gif"
+          alt="sign up okay"
+        />
       </Fragment>
     ) : (
       <section className="SignupForm">
@@ -59,48 +61,45 @@ class SignupForm extends Component {
 
           <form onSubmit={event => this.handleSubmit(event)}>
             <div className="form-group">
-            <label>
-                Name:
-            </label>
-              <input className="form-control"
+              <label>Name:</label>
+              <input
+                className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.fullName}
                 name="fullName"
                 type="text"
                 placeholder="Your name"
               />
-              </div>
-            
-              <div className="form-group">
-            <label>
-                Pseudo:
-            </label>
-              <input className="form-control"
+            </div>
+
+            <div className="form-group">
+              <label>Pseudo:</label>
+              <input
+                className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.name}
                 name="name"
                 type="text"
                 placeholder="Your pseudo"
-                />
-              </div>
-            
-              <div className="form-group">
-            <label>
-                Age:
-            </label>
-              <input className="form-control"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Age:</label>
+              <input
+                className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.age}
                 name="age"
                 type="number"
                 placeholder="Your age (must be at least 18)"
-                />
-              </div>
-            
+              />
+            </div>
 
             <div className="form-check">
               <p>Gender</p>
-              <input className="form-check-input"
+              <input
+                className="form-check-input"
                 onChange={event => this.genericOnChange(event)}
                 checked={this.state.gender === "female"}
                 value="female"
@@ -109,9 +108,12 @@ class SignupForm extends Component {
                 placeholder="Your name"
                 id="gender-female"
               />
-              <label className="form-check-label" htmlFor="gender-female">Female:</label>
+              <label className="form-check-label" htmlFor="gender-female">
+                Female:
+              </label>
 
-              <input className="form-check-input"
+              <input
+                className="form-check-input"
                 onChange={event => this.genericOnChange(event)}
                 checked={this.state.gender === "male"}
                 value="male"
@@ -120,9 +122,12 @@ class SignupForm extends Component {
                 placeholder="Your name"
                 id="gender-male"
               />
-              <label className="form-check-label" htmlFor="gender-male">Male:</label>
+              <label className="form-check-label" htmlFor="gender-male">
+                Male:
+              </label>
 
-              <input className="form-check-input"
+              <input
+                className="form-check-input"
                 onChange={event => this.genericOnChange(event)}
                 checked={this.state.gender === "neutral"}
                 value="neutral"
@@ -131,66 +136,67 @@ class SignupForm extends Component {
                 placeholder="Your name"
                 id="gender-neutral"
               />
-              <label className="form-check-label" htmlFor="gender-neutral">Neutral:</label>
+              <label className="form-check-label" htmlFor="gender-neutral">
+                Neutral:
+              </label>
             </div>
 
-              <div className="form-group">
-            <label>
-              Location:
-              <input className="form-control"
-                onChange={event => this.genericOnChange(event)}
-                value={this.state.location}
-                name="location"
-                type="text"
-                placeholder="Your city and country (ex: Paris, FRANCE)"
-              />
-                </label>
-              </div>
+            <div className="form-group">
+              <label>
+                Location:
+                <input
+                  className="form-control"
+                  onChange={event => this.genericOnChange(event)}
+                  value={this.state.location}
+                  name="location"
+                  type="text"
+                  placeholder="Your city and country (ex: Paris, FRANCE)"
+                />
+              </label>
+            </div>
 
-              <div className="form-group">
-            <label>
-                Email:
-            </label>
-              <input className="form-control"
+            <div className="form-group">
+              <label>Email:</label>
+              <input
+                className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.email}
                 name="email"
                 type="email"
                 placeholder="Your email address"
               />
-              </div>
+            </div>
 
-
-              <div className="form-group">
-            <label>
-                Password (with 1 number minimum):
-            </label>
-              <input className="form-control"
+            <div className="form-group">
+              <label>Password (with 1 number minimum):</label>
+              <input
+                className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.originalPassword}
                 name="originalPassword"
                 type="password"
                 placeholder="Your password"
               />
-              </div>
-              
-              <div className="form-group">
-            <label>
-                Picture:
-            </label>
-              <input className="form-control"
+            </div>
+
+            <div className="form-group">
+              <label>Picture:</label>
+              <input
+                className="form-control"
                 onChange={event => this.uploadOnChange(event)}
                 name="avatarURL"
                 type="file"
               />
-                <img className="img-thumbnail rounded mx-auto d-block" src={this.state.avatarURL} />
-              </div>
-              
+              <img
+                className="img-thumbnail rounded mx-auto d-block"
+                src={this.state.avatarURL}
+              />
+            </div>
+
             <div className="form-group">
-            <label>
-                Describe yourself in #:
-            </label>
-              <input className="form-control"
+              <label>Describe yourself in #:</label>
+              <input
+                className="form-control"
                 onChange={event => this.genericOnChange(event)}
                 value={this.state.description}
                 name="description"
@@ -199,12 +205,13 @@ class SignupForm extends Component {
               />
             </div>
 
-            <button type="submit"
-                className="btn btn-success" 
-                onClick={() => this.props.onClickSign()}
-                >Sign Up</button>
-              
-            
+            <button
+              type="submit"
+              className="btn btn-success"
+              onClick={() => this.props.onClickSign()}
+            >
+              Sign Up
+            </button>
           </form>
         </div>
       </section>
