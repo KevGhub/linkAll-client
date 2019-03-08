@@ -52,7 +52,6 @@ class Search extends Component {
 
     return (
       <section className="searchResult">
-        
         <form onSubmit={event => this.handleSubmit(event)}>
           <input
             onChange={event => this.genericOnChange(event)}
@@ -65,50 +64,52 @@ class Search extends Component {
           />
         </form>
 
-        {countrySearch === "" ?
-         null
-          :
-          (
+        {countrySearch === "" ? null : (
           <div className="countryList container">
-          <ul className="row d-flex justify-content-center">
-            {filteredArray.map(oneCountry => {
-              return (
-                <li className="oneCountry col-lg-4 col-md-6 col-sm-12 w-100" key={oneCountry._id}>
-                  <div className="li-content">
-                  <img src={oneCountry.flag} className="countryFlag" alt="country flag" />
-                  <h4>{oneCountry.name}</h4>
-                  {/* <p>{oneCountry.capital}</p> */}
-<div className="iconList d-flex justify-content-center">
-                  {oneCountry.RoomsCategories.map(oneRoomCategory => {
-                    return (
-
-                      <Link
-                        key={oneRoomCategory._id}
-                        to={`/linkall-messenger/${oneCountry.name}/${
-                          oneRoomCategory.roomName
-                        }`}
-                        >
-                          {oneRoomCategory.roomName === "Travel in" ?
-                            <img src={icon1} alt="" className="icons"/>
-                            :
-                            oneRoomCategory.roomName === "Fooding" ?
-                              <img src={icon4} alt="" className="icons"/>
-                              :
-                              oneRoomCategory.roomName === "Culture & language" ?
+            <ul className="row d-flex justify-content-center">
+              {filteredArray.map(oneCountry => {
+                return (
+                  <li
+                    className="oneCountry col-lg-4 col-md-6 col-sm-12 w-100"
+                    key={oneCountry._id}
+                  >
+                    <div className="li-content">
+                      <img
+                        src={oneCountry.flag}
+                        className="countryFlag"
+                        alt="country flag"
+                      />
+                      <h4>{oneCountry.name}</h4>
+                      {/* <p>{oneCountry.capital}</p> */}
+                      <div className="iconList d-flex justify-content-center">
+                        {oneCountry.RoomsCategories.map(oneRoomCategory => {
+                          return (
+                            <Link
+                              key={oneRoomCategory._id}
+                              to={`/linkall-messenger/${oneCountry.name}/${
+                                oneRoomCategory.roomName
+                              }`}
+                            >
+                              {oneRoomCategory.roomName === "Travel in" ? (
+                                <img src={icon1} alt="" className="icons" />
+                              ) : oneRoomCategory.roomName === "Fooding" ? (
+                                <img src={icon4} alt="" className="icons" />
+                              ) : oneRoomCategory.roomName ===
+                                "Culture & language" ? (
                                 <img src={icon3} alt="" className="icons" />
-                                :
-                                <img src={icon2} alt="" className="icons"/>
-                          }
-                        </Link>
-                    );
-                  })}
+                              ) : (
+                                <img src={icon2} alt="" className="icons" />
+                              )}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                </li>
-              );
-            })}
+                  </li>
+                );
+              })}
             </ul>
-            </div>
+          </div>
         )}
       </section>
     );

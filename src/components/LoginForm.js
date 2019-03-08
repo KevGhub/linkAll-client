@@ -34,43 +34,47 @@ class LoginForm extends Component {
     return this.props.currentUser ? (
       <Fragment>
         <p>WELCOME, let's start to CHAT</p>
-        <img className="img-thumbnail rounded mx-auto d-block" src="https://media.giphy.com/media/7OVRDntHUDGpLrDpjV/giphy.gif" alt="login okay" />
+        <img
+          className="img-thumbnail rounded mx-auto d-block"
+          src="https://media.giphy.com/media/7OVRDntHUDGpLrDpjV/giphy.gif"
+          alt="login okay"
+        />
       </Fragment>
-     
     ) : (
       <section className="LoginForm">
         <form onSubmit={event => this.handleSubmit(event)}>
-          
-            <div className="form-group">
-          <label>
-              Email:
-          </label>
-              <input className="form-control"
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              className="form-control"
               onChange={event => this.genericOnChange(event)}
               value={this.state.email}
               name="email"
               type="email"
               placeholder="Your email address"
             />
-            </div>
-            
-           <div className="form-group">
-          <label>
-              Password:
-          </label>
-              <input className="form-control"
+          </div>
+
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              className="form-control"
               onChange={event => this.genericOnChange(event)}
               value={this.state.originalPassword}
               name="originalPassword"
               type="password"
               placeholder="Your password"
             />
-            </div>
-            
-            <button type="submit" className="btn btn-success"
-              onClick={() => this.props.onClickLog()}
-              id="closeModal"
-            >Log In</button>
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-success"
+            onClick={() => this.props.onClickLog()}
+            id="closeModal"
+          >
+            Log In
+          </button>
         </form>
       </section>
     );

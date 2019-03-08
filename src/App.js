@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import logo from "./images/logo-little.png";
 import "./App.css";
 import { Switch, Route, NavLink } from "react-router-dom";
 import NotFound from "./components/NotFound.js";
@@ -11,10 +11,7 @@ import UserAccount from "./components/UserAccount";
 import AppMessenger from "./components/AppMessenger.js";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
-import $ from 'jquery';
-
-
-
+import $ from "jquery";
 
 function getUseraddress(user) {
   return `/account/${user.name}`;
@@ -29,19 +26,16 @@ class App extends Component {
       userInfo = JSON.parse(userInfo);
     }
     this.state = {
-      currentUser: userInfo,
+      currentUser: userInfo
       // favorites: []
     };
   }
 
   updateUser(newUser) {
-    console.log("hello", newUser, localStorage.getItem("currentUser"));
-
     if (newUser) {
       //save the user info in localstorage if he's log in
       //(turn it into JSON string before saving)
       localStorage.setItem("currentUser", JSON.stringify(newUser));
-      
     } else {
       // delete the user info fron localStorage if he's log out
       localStorage.removeItem("currentUser");
@@ -50,9 +44,7 @@ class App extends Component {
     this.setState({ currentUser: newUser });
   }
 
-
   addToFavorites(countries) {
-
     var favorites = this.state.favorites;
 
     favorites.push({
@@ -68,23 +60,19 @@ class App extends Component {
   }
 
   removeFromFavorites(countries) {
-
     var favorites = this.state.favorites;
     var index = -1;
 
     for (var i = 0; i < favorites.length; i++) {
-
-      if (favorites[i].countries == countries) {
+      if (favorites[i].countries === countries) {
         index = i;
         break;
       }
-
     }
 
     // If it was found, remove it from the favorites array
 
     if (index !== -1) {
-
       favorites.splice(index, 1);
 
       this.setState({
@@ -93,32 +81,27 @@ class App extends Component {
 
       localStorage.favorites = JSON.stringify(favorites);
     }
-
   }
 
   onClickLog() {
-    $('#closeModal').click(function () {
-      $('#exampleModal').modal('hide')
+    $("#closeModal").click(function() {
+      $("#exampleModal").modal("hide");
     });
   }
 
   onClickSign() {
-    $('#closeModal').click(function () {
-      $('#exampleModal2').modal('hide')
+    $("#closeModal").click(function() {
+      $("#exampleModal2").modal("hide");
     });
   }
 
-
   isCountryInFavorites(countries) {
-
     var favorites = this.state.favorites;
 
     for (var i = 0; i < favorites.length; i++) {
-
-      if (favorites[i].countries == countries) {
+      if (favorites[i].countries === countries) {
         return true;
       }
-
     }
 
     return false;
@@ -136,12 +119,9 @@ class App extends Component {
       console.log("DELETED", response.data);
       this.updateUser(null);
     });
-
   }
 
-
   render() {
-    
     return (
       <div className="App">
         <header className="header w-100">
@@ -151,12 +131,17 @@ class App extends Component {
             </NavLink>
             {this.state.currentUser ? (
               <div className="userLogged d-flex align-items-center">
-
                 <div className="User-out d-flex align-items-center">
-
-                  <p className="userName">  Welcome  <b>{this.state.currentUser.name}</b>
+                  <p className="userName">
+                    {" "}
+                    Welcome <b>{this.state.currentUser.name}</b>
                   </p>
-                  <button className="btn btn-outline-success my-2 my-sm-0 btnLogout" onClick={() => this.LogoutClick()}>Log Out</button>
+                  <button
+                    className="btn btn-outline-success my-2 my-sm-0 btnLogout"
+                    onClick={() => this.LogoutClick()}
+                  >
+                    Log Out
+                  </button>
                   <NavLink to={getUseraddress(this.state.currentUser)}>
                     <img
                       src={this.state.currentUser.avatarURL}
@@ -169,24 +154,47 @@ class App extends Component {
                 </div>
               </div>
             ) : (
-                
-                <div className ="buttons">
-                  <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal2">Sign up</button>
-                 
-                    <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">Log In</button>
-                 
-                </div>
-              )}
+              <div className="buttons">
+                <button
+                  type="button"
+                  className="btn btn-outline-success my-2 my-sm-0"
+                  data-toggle="modal"
+                  data-target="#exampleModal2"
+                >
+                  Sign up
+                </button>
 
-            
+                <button
+                  type="button"
+                  className="btn btn-outline-success my-2 my-sm-0"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Log In
+                </button>
+              </div>
+            )}
 
-
-<div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div
+              className="modal fade"
+              id="exampleModal"
+              tabIndex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
               <div className="modal-dialog" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h4 className="modal-title" id="exampleModalLabel">You are at few steps to chat with awsome people</h4>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <h4 className="modal-title" id="exampleModalLabel">
+                      You are at few steps to chat with awsome people
+                    </h4>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -196,17 +204,31 @@ class App extends Component {
                       loginSuccess={user => this.updateUser(user)}
                       onClickLog={() => this.onClickLog()}
                     />
-      </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div
+              className="modal fade"
+              id="exampleModal2"
+              tabIndex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel2"
+              aria-hidden="true"
+            >
               <div className="modal-dialog" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel2">Hello World, but first please sign up</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <h5 className="modal-title" id="exampleModalLabel2">
+                      Hello World, but first please sign up
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -220,12 +242,10 @@ class App extends Component {
                 </div>
               </div>
             </div>
-
-</nav>
+          </nav>
         </header>
 
         <Switch>
-          
           <Route
             exact
             path="/"
@@ -233,7 +253,7 @@ class App extends Component {
               return (
                 <HomePage
                   currentUser={this.state.currentUser}
-                  signupSuccess={user => this.updateUser(user)}             
+                  signupSuccess={user => this.updateUser(user)}
                   favListImport={() => this.favInitialState()}
                   toggleFav={() => this.toggleFavorite()}
                 />

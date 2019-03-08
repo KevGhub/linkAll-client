@@ -8,7 +8,7 @@ import OnlineUser from "./onlineUser.js";
 import SearchBar from "./SearchBar";
 import GifList from "./GifList";
 import axios from "axios";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 import { tokenUrl, instanceLocator } from "../config.js";
 import { getCountryDetails } from "../api";
@@ -22,6 +22,7 @@ class AppMessenger extends React.Component {
     this.state = {
       country: {},
       roomId: null,
+      roomUsers: [],
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
@@ -40,7 +41,7 @@ class AppMessenger extends React.Component {
     // console.log(userInfo.name);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator,
-      userId: this.props.currentUser._id,
+      userId: this.props.currentUser.name,
       tokenProvider: new Chatkit.TokenProvider({
         url: tokenUrl
       })
@@ -55,8 +56,6 @@ class AppMessenger extends React.Component {
         this.updateCountryState();
       })
       .catch(err => console.log("error on connecting: ", err));
-    
-
   }
 
   componentDidUpdate(oldProps) {
@@ -81,7 +80,6 @@ class AppMessenger extends React.Component {
       const room = response.data.RoomsCategories.find(oneCat => {
         return oneCat.roomName === params.roomName;
       });
-      console.log("hello -------",room)
       this.subscribeToRoom(room.chatkitId);
     });
   }
@@ -117,9 +115,10 @@ class AppMessenger extends React.Component {
       })
 
       .then(room => {
-        console.log("subscribed", room, this.currentUser.joinedRooms);
+        console.log("subscribed", room);
         this.setState({
-          roomId: room.id
+          roomId: room.id,
+          roomUsers: room.userIds
         });
         this.getRooms();
       })
@@ -163,8 +162,14 @@ class AppMessenger extends React.Component {
   }
 
   render() {
+    const { params } = this.props.match;
+    let classList = "AppMessenger";
+    if (params.roomName === "Time Out") {
+      classList = "AppMessenger dark";
+    }
+
     return (
-      <div className="AppMessenger">
+      <div className={classList}>
         {/* <Search /> */}
 
         <RoomList
@@ -173,11 +178,10 @@ class AppMessenger extends React.Component {
           roomId={this.state.roomId}
         />
 
-        
-        
-        <CurrentChannelCat rooms={[...this.state.joinedRooms]} />
+        {/* <CurrentChannelCat rooms={[...this.state.joinedRooms]} /> */}
 
-        <OnlineUser />
+        <OnlineUser roomUsers={this.state.roomUsers} />
+
         <MessageList
           roomId={this.state.roomId}
           messages={this.state.messages}
@@ -187,14 +191,19 @@ class AppMessenger extends React.Component {
           sendMessage={this.sendMessage}
           selectedGif={this.state.selectedGif}
         />
-        
+
         <div className="Gif-search">
           <SearchBar onTermChange={this.handleTermChange} />
-          <GifList gifs={this.state.gifs}
-            onGifSelect={selectedGif => this.openModal(selectedGif)} />
-          <GifModal modalIsOpen={this.state.modalIsOpen}
+          <GifList
+            gifs={this.state.gifs}
+            onGifSelect={selectedGif => this.openModal(selectedGif)}
+          />
+          <GifModal
+            modalIsOpen={this.state.modalIsOpen}
             selectedGif={this.state.selectedGif}
-            onRequestClose={url => this.closeModal(url)} />
+            // modelHelp={event => this.state.helpModal(event)}
+            onRequestClose={url => this.closeModal(url)}
+          />
         </div>
 
         {/* // opposite value of disabled on sendmessageForm (// Empeche d'écrire avant de rejoindre une Room) */}
