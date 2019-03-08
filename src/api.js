@@ -5,7 +5,7 @@ const backendApi = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   withCredentials: true
 });
-// POUR TOI DELPHINE
+
 // ERROR HANDLER ###################################################################
 //----------------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ export function postFile(files) {
   // (the name "userFile" is the one the backend is expecting)
   uploadData.append("userFile", files[0]);
 
-  return backendApi.post("/api/single-upload", uploadData).catch(errorHandler);
+  return backendApi.post("/api/avatar-upload", uploadData).catch(errorHandler);
 }
 
 // AUTH ###################################################################
@@ -86,10 +86,11 @@ export function getLogOut() {
 }
 
 export function patchFavorite(roomId) {
-  return backendApi.patch("/api/account/favorite", { roomId }).catch(errorHandler);
+  return backendApi
+    .patch("/api/account/favorite", { roomId })
+    .catch(errorHandler);
 }
 
 export function getFavorite() {
   return backendApi.get("/api/account/favorite").catch(errorHandler);
 }
-

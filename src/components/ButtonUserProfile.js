@@ -14,14 +14,6 @@ class ButtonUserProfile extends Component {
     this.setState({ [name]: value });
   }
 
-  handleEditSubmit(event) {
-    event.preventDefault();
-    postUserEditDetails(this.state).then(response => {
-      this.props.editSuccess(response.data);
-      console.log("User", response.data);
-    });
-  }
-
   uploadOnChange(event) {
     const { name, files } = event.target;
 
@@ -30,6 +22,16 @@ class ButtonUserProfile extends Component {
       this.setState({ [name]: response.data.fileUrl });
     });
   }
+
+  handleEditSubmit(event) {
+    event.preventDefault();
+    postUserEditDetails(this.state).then(response => {
+      this.props.editSuccess(response.data);
+      console.log("User", response.data);
+    });
+  }
+
+ 
 
 
   render() {
@@ -73,16 +75,21 @@ class ButtonUserProfile extends Component {
                 placeholder="Your city and country (ex: Paris, FRANCE)"
               />
             </div>
+
             <div className="form-group">
-            <label>
-              Picture:
+              <label>
+                Picture:
             </label>
+              <img className="img-thumbnail rounded" src={this.state.avatarURL} />
               <input className="form-control"
                 onChange={event => this.uploadOnChange(event)}
                 name="avatarURL"
                 type="file"
               />
+              
             </div>
+
+
             <div className="form-group">
             <label>
               Description:
