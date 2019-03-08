@@ -6,7 +6,8 @@ class SendMessageForm extends React.Component {
     super();
     this.state = {
       message: "",
-      selectedGif: ""
+      selectedGif: null,
+      selectedGifUrl: ""
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -41,7 +42,7 @@ class SendMessageForm extends React.Component {
           placeholder="Send gif hit ENTER"
           type="file"
         > */}
-          {this.props.selectedGif && <img src={this.props.selectedGif} />}
+        {this.props.selectedGifUrl && <img src={this.props.selectedGifUrl} />}
         
         <input
           disabled={this.props.disabled} // Empeche d'écrire avant de rejoindre une Room

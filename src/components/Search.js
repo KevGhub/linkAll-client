@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-// import chatkit from "@pusher/chatkit";
+// import chatkit from "@pusher/chatkit-client";
 import icon1 from "../images/icon-1.svg";
 import icon2 from "../images/icon-2.svg";
 import icon3 from "../images/icon-3.svg";

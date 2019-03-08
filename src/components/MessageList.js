@@ -36,6 +36,7 @@ class MessageList extends React.Component {
               key={message.id}
               sender={message.sender}
               text={message.text}
+              attachment={message.attachment}
             />
           );
         })}
