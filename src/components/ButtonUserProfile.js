@@ -13,6 +13,14 @@ class ButtonUserProfile extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
+  
+  handleEditSubmit(event) {
+    event.preventDefault();
+    postUserEditDetails(this.state).then(response => {
+      this.props.editSuccess(response.data);
+      console.log("User", response.data);
+    });
+  }
 
   uploadOnChange(event) {
     const { name, files } = event.target;
@@ -23,13 +31,7 @@ class ButtonUserProfile extends Component {
     });
   }
 
-  handleEditSubmit(event) {
-    event.preventDefault();
-    postUserEditDetails(this.state).then(response => {
-      this.props.editSuccess(response.data);
-      console.log("User", response.data);
-    });
-  }
+
 
  
 

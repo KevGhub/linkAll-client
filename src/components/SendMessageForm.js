@@ -28,6 +28,7 @@ class SendMessageForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="send-message-form">
+        {this.props.selectedGif && <img src={this.props.selectedGif} />}
         <input
           disabled={this.props.disabled} // Empeche d'écrire avant de rejoindre une Room
           onChange={this.handleChange}

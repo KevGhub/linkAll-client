@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import "./LoginForm.css";
 import { postLogin } from "../api";
@@ -32,7 +32,15 @@ class LoginForm extends Component {
 
   render() {
     return this.props.currentUser ? (
+<<<<<<< HEAD
       <p>WELCOME, let's start to CHAT</p>
+=======
+      <Fragment>
+        <p>WELCOME, let's start to CHAT</p>
+        <img className="img-thumbnail rounded mx-auto d-block" src="https://media.giphy.com/media/7OVRDntHUDGpLrDpjV/giphy.gif" alt="login okay" />
+      </Fragment>
+     
+>>>>>>> fb0eaddef4b7666ff4384dd243d5cb4aff344b94
     ) : (
       <section className="LoginForm">
         <form onSubmit={event => this.handleSubmit(event)}>

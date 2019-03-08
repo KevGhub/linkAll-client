@@ -243,6 +243,8 @@ body {
 }
 
 .gif-list {
+  height: 180px;
+  overflow: scroll;
   column-gap: 0.2em;
   font-size: 0.85em;
   margin: 0.5em 0;
@@ -267,6 +269,8 @@ body {
   position: absolute;
   text-align: center;
   top: 50%;
+  width: 80px;
+  height: 50px;
   transform: translateX(-50%) translateY(-50%);
 }
 

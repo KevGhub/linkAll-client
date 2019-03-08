@@ -209,6 +209,7 @@ class App extends Component {
               </div>
             </div>
 
+<<<<<<< HEAD
             <div
               className="modal fade"
               id="exampleModal2"
@@ -229,6 +230,14 @@ class App extends Component {
                       data-dismiss="modal"
                       aria-label="Close"
                     >
+=======
+            <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel2">Hello World, but first please sign up</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+>>>>>>> fb0eaddef4b7666ff4384dd243d5cb4aff344b94
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -253,7 +262,11 @@ class App extends Component {
               return (
                 <HomePage
                   currentUser={this.state.currentUser}
+<<<<<<< HEAD
                   signupSuccess={user => this.updateUser(user)}
+=======
+                  signupSuccess={user => this.updateUser(user)}             
+>>>>>>> fb0eaddef4b7666ff4384dd243d5cb4aff344b94
                   favListImport={() => this.favInitialState()}
                   toggleFav={() => this.toggleFavorite()}
                 />
