@@ -7,7 +7,7 @@ class OnlineUser extends Component {
     return (
       <div>
         {roomUsers.map(oneName => {
-          return <li key={oneName}> {oneName} </li>;
+          return <div key={oneName}> {oneName} </div>;
         })}
       </div>
     );

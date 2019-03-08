@@ -186,7 +186,7 @@ class AppMessenger extends React.Component {
           roomId={this.state.roomId}
         />
 
-        <CurrentChannelCat rooms={[...this.state.joinedRooms]} />
+        {/* <CurrentChannelCat rooms={[...this.state.joinedRooms]} /> */}
 
         <OnlineUser roomUsers={this.state.roomUsers} />
 
