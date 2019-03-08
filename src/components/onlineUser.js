@@ -5,9 +5,10 @@ class OnlineUser extends Component {
     const { roomUsers } = this.props;
 
     return (
-      <div>
+      <div className="userOnline">
+        <h4>Online user(s)</h4>
         {roomUsers.map(oneName => {
-          return <div key={oneName}> {oneName} </div>;
+          return <li key={oneName}> {oneName} </li>;
         })}
       </div>
     );

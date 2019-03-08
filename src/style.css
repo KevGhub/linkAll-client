@@ -8,8 +8,8 @@
   --App-font-family: -apple-system, Roboto, BlinkMacSystemFont, "Segoe UI",
     Oxygen;
 }
-/* violet : 7E57C2 
-jaune : FFEB3B
+/* violet : #7E57C2 
+jaune : #FFEB3B
 noir : #212121
 */
 
@@ -51,6 +51,7 @@ body {
 "u s s s s g"; */
 
 .searchResult {
+  background-color: rgb(240, 240, 240);
   grid-area: u;
 }
 
@@ -72,6 +73,7 @@ body {
 /* GIPHY : */
 .SearchBar {
   grid-area: g;
+  background-color: rgb(240, 240, 240);
 }
 
 AppMessenger-dark {
@@ -81,12 +83,30 @@ AppMessenger-dark {
 .rooms-list {
   box-sizing: border-box;
   padding: 10px;
-  background-color: var(--main-color);
+  background-color: lightgrey;
   overflow: auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rooms-ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: scoll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .rooms-list ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
   list-style-type: none;
   padding: 0;
   overflow: scoll;
@@ -94,21 +114,23 @@ AppMessenger-dark {
 
 .rooms-list li {
   margin: 10px 0;
+  padding: 0 10px;
 }
 
-.rooms-list h3 {
+.rooms-list h1 {
   margin: 5px 0;
-  color: var(--secondary-color);
+
+  color: black;
 }
 
 .rooms-list .room a {
-  color: var(--secondary-text-color);
+  color: black;
   font-weight: 600;
   text-decoration: none;
 }
 
 .rooms-list .room.active a {
-  color: var(--secondary-color);
+  color: black;
 }
 
 .rooms-list .bookmarked {
@@ -262,8 +284,9 @@ AppMessenger-dark {
   overflow: scroll;
   column-gap: 0.2em;
   font-size: 0.85em;
-  margin: 0.5em 0;
   padding: 0;
+  margin: 0;
+  background-color: rgb(240, 240, 240);
 }
 
 .SearchBarInput {
@@ -319,4 +342,10 @@ AppMessenger-dark {
     -webkit-column-count: 4;
     column-count: 4;
   }
+}
+
+.userOnline {
+  padding: 10px 15px;
+  list-style-type: disc !important;
+  background-color: rgb(240, 240, 240);
 }

@@ -134,7 +134,7 @@ class AppMessenger extends React.Component {
 
   // GIF RELATED----------------------------
   handleTermChange(term) {
-    const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(
+    const url = `https://api.giphy.com/v1/gifs/search?q=${term.replace(
       /\s/g,
       "+"
     )}&api_key=${process.env.REACT_APP_GIPHY_API_KEY}`;
