@@ -31,14 +31,13 @@ body {
   height: 100%;
 
   /* 1fr = 1 fraction unit  for Css GRID -> 6 columns for each same 1 fr  */
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 
   /* 1fr = 1 fraction unit  for Css GRID -> 5 rows for each same 1 fr  */
 
-  grid-template-rows: 1fr 1fr 1fr 1fr 60px;
+  grid-template-rows:  1fr 1fr 1fr 20px;
   grid-template-areas:
     "r r r r r r r"
-    "o m m m m m m"
     "o m m m m m m"
     "o m m m m m m"
     "o s s s s s s";
@@ -300,14 +299,34 @@ body {
 }
 
 .gif-modal {
-  left: 50%;
+  /* left: 50%;
   position: absolute;
   text-align: center;
   top: 50%;
   width: 80px;
   height: 50px;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%); */
+      display: flex;
+    flex-direction: column;
 }
+
+.gifimg{
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.ReactModal__Content--after-open{
+      width: 60% !important;
+    height: 80% !important;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.btnviolet{
+  background-image: #7E57C2 !important;
+}
+
 
 @media only screen and (min-width: 400px) {
   .gif-list {
