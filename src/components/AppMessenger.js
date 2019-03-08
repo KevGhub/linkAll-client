@@ -1,5 +1,5 @@
 import React from "react";
-import Chatkit from "@pusher/chatkit";
+import Chatkit from "@pusher/chatkit-client";
 import MessageList from "./MessageList";
 import SendMessageForm from "./SendMessageForm";
 import RoomList from "./RoomList";
@@ -26,7 +26,8 @@ class AppMessenger extends React.Component {
       joinableRooms: [],
       joinedRooms: [],
       gifs: [],
-      selectedGif: "",
+      selectedGif: null,
+      selectedGifUrl: "",
       modalIsOpen: false
     };
     this.sendMessage = this.sendMessage.bind(this);
@@ -99,10 +100,11 @@ class AppMessenger extends React.Component {
     this.setState({ messages: [] });
     this.currentUser
       .subscribeToRoom({
-        roomId: roomId,
+        roomId: String(roomId),
         // messageLimit: 100,
         hooks: {
-          onNewMessage: message => {
+          onMessage: message => {
+            console.log("hello)-------", message)
             this.setState({
               messages: [...this.state.messages, message]
             });
@@ -114,7 +116,6 @@ class AppMessenger extends React.Component {
       })
 
       .then(room => {
-        console.log("subscribed", room);
         this.setState({
           roomId: room.id,
           roomUsers: room.userIds
@@ -124,12 +125,25 @@ class AppMessenger extends React.Component {
       .catch(err => console.log("error on subscribing to room", err));
   }
 
-  sendMessage(text, selectedGif) {
-    this.currentUser.sendMessage({
-      text,
-      selectedGif,
-      roomId: this.state.roomId
-    });
+  sendMessage(text) {
+    if (!this.state.selectedGifUrl) {
+      this.currentUser.sendMessage({
+        text,
+        roomId: this.state.roomId
+      });
+      return;
+    }
+
+    this.currentUser.sendMultipartMessage({
+      roomId: this.state.roomId,
+      parts: [
+        { type: "text/plain", content: text },
+        {
+          type: "image/gif",
+          url: this.state.selectedGifUrl,
+        },
+      ] 
+    }).then(() => this.setState({ selectedGifUrl: "" }));
   }
 
   // GIF RELATED----------------------------
@@ -156,7 +170,7 @@ class AppMessenger extends React.Component {
   closeModal(url) {
     this.setState({
       modalIsOpen: false,
-      selectedGif: url
+      selectedGifUrl: url
     });
   }
 
@@ -188,7 +202,7 @@ class AppMessenger extends React.Component {
         <SendMessageForm
           disabled={!this.state.roomId}
           sendMessage={this.sendMessage}
-          selectedGif={this.state.selectedGif}
+          selectedGifUrl={this.state.selectedGifUrl}
         />
 
         <div className="Gif-search">

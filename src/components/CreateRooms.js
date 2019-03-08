@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Chatkit from "@pusher/chatkit";
+import Chatkit from "@pusher/chatkit-client";
 
 import { getCountries } from "../api.js";
 
