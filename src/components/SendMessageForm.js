@@ -8,7 +8,6 @@ class SendMessageForm extends React.Component {
       message: "",
       selectedGif: null,
       selectedGifUrl: ""
-
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,9 +15,8 @@ class SendMessageForm extends React.Component {
 
   handleChange(event) {
     this.setState({
-      message: event.target.value,
+      message: event.target.value
       // selectedGif: event.target.req.body
-
     });
   }
 
@@ -26,9 +24,7 @@ class SendMessageForm extends React.Component {
     event.preventDefault();
     this.props.sendMessage(this.state.message);
     this.setState({
-      message: "",
-      
-      
+      message: ""
     });
   }
 
@@ -43,13 +39,14 @@ class SendMessageForm extends React.Component {
           type="file"
         > */}
         {this.props.selectedGifUrl && <img src={this.props.selectedGifUrl} />}
-        
+
         <input
           disabled={this.props.disabled} // Empeche d'écrire avant de rejoindre une Room
           onChange={this.handleChange}
           value={this.state.message}
           placeholder="Type your message and hit ENTER"
           type="text"
+          className="inputtypetext"
         />
       </form>
       //   <Sound

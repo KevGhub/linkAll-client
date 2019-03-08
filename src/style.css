@@ -2,7 +2,7 @@
 :root {
   --main-color: #fafafa98;
   --secondary-color: #fafafa98;
-  --main-text-color: #fafafa98;
+  --main-text-color: grey;
   --secondary-text-color: #fafafa98;
   --send-message-form: #fafafa98;
   --App-font-family: -apple-system, Roboto, BlinkMacSystemFont, "Segoe UI",
@@ -40,8 +40,8 @@ body {
     "r r r r r r r"
     "o m m m m m m"
     "o m m m m m m"
-    "u m m m m m m"
-    "g s s s s s s";
+    "o m m m m m m"
+    "o s s s s s s";
 }
 
 /* Grid Laura (repeat(4, 1fr) :
@@ -51,7 +51,7 @@ body {
 "u s s s s g"; */
 
 .searchResult {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(240, 240, 240) !important;
   grid-area: u;
 }
 
@@ -69,14 +69,13 @@ body {
 
 .send-message-form {
   grid-area: s;
+  border: 1px solid grey;
+  padding: 0 20px;
 }
 /* GIPHY : */
 .SearchBar {
   grid-area: g;
   background-color: rgb(240, 240, 240);
-}
-
-AppMessenger-dark {
 }
 
 /* REST OF CSS */
@@ -230,7 +229,6 @@ AppMessenger-dark {
 
 .message-avatarURL {
   overflow: hidden;
-  box-shadow: 3px 20px 2px 1px #f5eb8e;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
@@ -280,7 +278,6 @@ AppMessenger-dark {
 }
 
 .gif-list {
-  height: 180px;
   overflow: scroll;
   column-gap: 0.2em;
   font-size: 0.85em;
@@ -348,4 +345,22 @@ AppMessenger-dark {
   padding: 10px 15px;
   list-style-type: disc !important;
   background-color: rgb(240, 240, 240);
+}
+
+.imgPic {
+  object-fit: contain;
+  width: 100%;
+}
+
+.gif {
+  object-fit: contain;
+}
+
+.message-avatarURL,
+.textDiv,
+.gifDiv {
+  margin-bottom: 10px;
+}
+
+.inputtypetext {
 }
